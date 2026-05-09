@@ -1,0 +1,1716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · Elemento Sinergia</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange:    #F26419;
+      --orange-dk: #d4540f;
+      --navy:      #0B1F42;
+      --navy-mid:  #1A3668;
+      --cream:     #FAF7F2;
+      --white:     #FFFFFF;
+      --gray:      #6B7280;
+      --gray-lt:   #F3F4F6;
+      --black:     #0a0a0a;
+      --green:     #16a34a;
+      --green-lt:  #dcfce7;
+      --red:       #dc2626;
+      --red-lt:    #fee2e2;
+      --font-h: 'Bebas Neue', sans-serif;
+      --font-b: 'Outfit', sans-serif;
+      --r-sm: 8px; --r-md: 14px; --r-lg: 20px; --r-full: 9999px;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,.08);
+      --shadow-md: 0 8px 32px rgba(0,0,0,.12);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,.18);
+      --tr: .22s cubic-bezier(.4,0,.2,1);
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-b);
+      background: #f0f2f7;
+      color: var(--navy);
+      min-height: 100vh;
+    }
+
+    /* ── PANTALLA LOGIN ─────────────────────────────────── */
+    #loginScreen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: linear-gradient(145deg, var(--navy) 0%, var(--navy-mid) 60%, #2a4a8a 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    #loginScreen.hidden { display: none; }
+
+    .login-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 3rem 2.5rem;
+      width: 100%; max-width: 400px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+    .login-logo {
+      font-family: var(--font-h);
+      font-size: 2.8rem;
+      color: var(--navy);
+      letter-spacing: .04em;
+      margin-bottom: .25rem;
+    }
+    .login-sub {
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--gray);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+    }
+    .login-label {
+      display: block;
+      text-align: left;
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .4rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+    .login-input {
+      width: 100%;
+      padding: .85rem 1rem;
+      border: 1.5px solid rgba(0,0,0,.12);
+      border-radius: var(--r-md);
+      font-family: var(--font-b);
+      font-size: .95rem;
+      color: var(--navy);
+      background: var(--gray-lt);
+      margin-bottom: 1.4rem;
+      transition: border-color var(--tr), box-shadow var(--tr);
+      outline: none;
+    }
+    .login-input:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(242,100,25,.15);
+      background: var(--white);
+    }
+    .login-btn {
+      width: 100%;
+      padding: .9rem;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r-full);
+      font-family: var(--font-b);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background var(--tr), transform var(--tr);
+      box-shadow: 0 6px 20px rgba(242,100,25,.35);
+    }
+    .login-btn:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .login-error {
+      color: var(--red);
+      font-size: .83rem;
+      font-weight: 600;
+      margin-top: .8rem;
+      display: none;
+    }
+    .login-error.show { display: block; }
+
+    /* ── PANEL PRINCIPAL ────────────────────────────────── */
+    #adminPanel { display: none; }
+    #adminPanel.visible { display: block; }
+
+    /* Header */
+    .admin-header {
+      background: var(--navy);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 16px rgba(0,0,0,.2);
+    }
+    .admin-header-left {
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .admin-logo {
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: .04em;
+      text-decoration: none;
+    }
+    .admin-logo span { color: var(--orange); }
+    .admin-badge {
+      background: rgba(242,100,25,.2);
+      color: var(--orange);
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: var(--r-full);
+      border: 1px solid rgba(242,100,25,.3);
+    }
+    .admin-header-right {
+      display: flex; align-items: center; gap: .8rem;
+    }
+    .header-btn {
+      display: flex; align-items: center; gap: .45rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.85);
+      padding: .45rem 1rem;
+      border-radius: var(--r-full);
+      font-family: var(--font-b);
+      font-size: .8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--tr), border-color var(--tr);
+      text-decoration: none;
+    }
+    .header-btn:hover {
+      background: rgba(255,255,255,.15);
+      border-color: rgba(255,255,255,.3);
+    }
+    .header-btn.danger:hover {
+      background: rgba(220,38,38,.2);
+      border-color: rgba(220,38,38,.4);
+      color: #fca5a5;
+    }
+    .header-btn svg { width: 14px; height: 14px; }
+
+    /* Main */
+    .admin-main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+    /* Toolbar semana */
+    .week-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 1.2rem 1.8rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .week-nav {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .week-nav-btn {
+      width: 38px; height: 38px;
+      background: var(--gray-lt);
+      border: 1.5px solid rgba(0,0,0,.08);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background var(--tr), border-color var(--tr);
+      color: var(--navy);
+    }
+    .week-nav-btn:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
+    .week-nav-btn svg { width: 16px; height: 16px; }
+    .week-label {
+      font-family: var(--font-h);
+      font-size: 1.5rem;
+      color: var(--navy);
+      letter-spacing: .04em;
+      min-width: 240px;
+      text-align: center;
+    }
+    .week-today-btn {
+      background: var(--navy);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r-full);
+      padding: .45rem 1.2rem;
+      font-family: var(--font-b);
+      font-weight: 700;
+      font-size: .82rem;
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .week-today-btn:hover { background: var(--navy-mid); }
+
+    .toolbar-right {
+      display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+    }
+    .legend {
+      display: flex; align-items: center; gap: 1.2rem;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .78rem; font-weight: 600; color: var(--gray);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .legend-dot.available { background: var(--green); }
+    .legend-dot.off { background: #d1d5db; }
+
+    /* Grilla calendario */
+    .cal-wrap { overflow-x: auto; }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: 70px repeat(7, 1fr);
+      gap: 3px;
+      min-width: 700px;
+    }
+
+    /* Cabecera días */
+    .cal-day-head {
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--r-sm);
+      padding: .7rem .4rem;
+      text-align: center;
+    }
+    .cal-day-head .dow {
+      font-size: .65rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+    .cal-day-head .dom {
+      font-family: var(--font-h);
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--white);
+    }
+    .cal-day-head.today { background: var(--orange); }
+    .cal-day-head.today .dow { color: rgba(255,255,255,.8); }
+
+    /* Celda hora (eje Y) */
+    .cal-hour-label {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: .75rem;
+      font-size: .72rem;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: .04em;
+    }
+
+    /* Celda de slot */
+    .cal-slot {
+      background: var(--white);
+      border-radius: var(--r-sm);
+      border: 1.5px solid #e5e7eb;
+      min-height: 58px;
+      cursor: pointer;
+      transition: all var(--tr);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: .3rem .25rem;
+    }
+    .cal-slot:hover {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 2px rgba(242,100,25,.15);
+      transform: scale(1.02);
+      z-index: 2;
+    }
+    .cal-slot.available {
+      background: var(--green-lt);
+      border-color: #86efac;
+    }
+    .cal-slot.available:hover {
+      background: #bbf7d0;
+      border-color: var(--green);
+    }
+    .cal-slot.past {
+      opacity: .45;
+      cursor: not-allowed;
+    }
+    .cal-slot.past:hover { transform: none; box-shadow: none; border-color: #e5e7eb; }
+
+    .slot-service {
+      font-size: .6rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--green);
+      text-align: center;
+      line-height: 1.2;
+    }
+    .slot-icon {
+      font-size: .95rem;
+      line-height: 1;
+    }
+    .slot-modal {
+      font-size: .55rem;
+      font-weight: 600;
+      color: rgba(22,163,74,.7);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .cal-slot:not(.available) .slot-service,
+    .cal-slot:not(.available) .slot-modal { color: #d1d5db; }
+    .cal-slot:not(.available) .slot-icon { opacity: .25; }
+
+    /* Modal de edición de slot */
+    .slot-modal-overlay {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .slot-modal-overlay.open {
+      opacity: 1; pointer-events: all;
+    }
+    .slot-modal-box {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      width: 100%; max-width: 420px;
+      box-shadow: var(--shadow-lg);
+      transform: scale(.94) translateY(10px);
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .slot-modal-overlay.open .slot-modal-box {
+      transform: scale(1) translateY(0);
+    }
+    .slot-modal-title {
+      font-family: var(--font-h);
+      font-size: 1.8rem;
+      color: var(--navy);
+      letter-spacing: .03em;
+      margin-bottom: .25rem;
+    }
+    .slot-modal-date {
+      font-size: .82rem;
+      color: var(--gray);
+      font-weight: 600;
+      margin-bottom: 1.6rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-label {
+      display: block;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      margin-bottom: .45rem;
+    }
+    .form-select, .form-input {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 1.5px solid rgba(0,0,0,.1);
+      border-radius: var(--r-md);
+      font-family: var(--font-b);
+      font-size: .9rem;
+      color: var(--navy);
+      background: var(--gray-lt);
+      outline: none;
+      transition: border-color var(--tr);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-select:focus, .form-input:focus {
+      border-color: var(--orange);
+      background: var(--white);
+    }
+    .form-select-wrap { position: relative; }
+    .form-select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 1rem; top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray);
+      pointer-events: none;
+      font-size: .85rem;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .9rem 1rem;
+      background: var(--gray-lt);
+      border-radius: var(--r-md);
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .toggle-row:hover { background: #e9eaf0; }
+    .toggle-row-label {
+      font-weight: 700; font-size: .9rem; color: var(--navy);
+    }
+    .toggle-switch {
+      width: 44px; height: 24px;
+      background: #d1d5db;
+      border-radius: var(--r-full);
+      position: relative;
+      transition: background var(--tr);
+      flex-shrink: 0;
+    }
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 18px; height: 18px;
+      background: var(--white);
+      border-radius: 50%;
+      transition: transform var(--tr);
+      box-shadow: 0 1px 4px rgba(0,0,0,.2);
+    }
+    .toggle-switch.on { background: var(--green); }
+    .toggle-switch.on::after { transform: translateX(20px); }
+
+    .modal-actions {
+      display: flex; gap: .8rem; margin-top: 1.6rem;
+    }
+    .modal-btn {
+      flex: 1;
+      padding: .8rem;
+      border-radius: var(--r-full);
+      font-family: var(--font-b);
+      font-weight: 700;
+      font-size: .9rem;
+      cursor: pointer;
+      transition: background var(--tr), transform var(--tr);
+      border: none;
+    }
+    .modal-btn.cancel {
+      background: var(--gray-lt);
+      color: var(--navy);
+    }
+    .modal-btn.cancel:hover { background: #e5e7eb; }
+    .modal-btn.save {
+      background: var(--orange);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(242,100,25,.3);
+    }
+    .modal-btn.save:hover { background: var(--orange-dk); transform: translateY(-1px); }
+    .modal-btn.delete-slot {
+      background: var(--red-lt);
+      color: var(--red);
+    }
+    .modal-btn.delete-slot:hover { background: #fecaca; }
+
+    /* Modal cambio de contraseña */
+    .pwd-modal-overlay {
+      position: fixed; inset: 0; z-index: 9997;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s ease;
+    }
+    .pwd-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .pwd-modal-box {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      width: 100%; max-width: 400px;
+      box-shadow: var(--shadow-lg);
+      transform: scale(.94);
+      transition: transform .25s cubic-bezier(.34,1.56,.64,1);
+    }
+    .pwd-modal-overlay.open .pwd-modal-box { transform: scale(1); }
+    .pwd-modal-title {
+      font-family: var(--font-h);
+      font-size: 1.8rem;
+      color: var(--navy);
+      margin-bottom: .3rem;
+    }
+    .pwd-modal-sub {
+      font-size: .83rem;
+      color: var(--gray);
+      margin-bottom: 1.6rem;
+      line-height: 1.5;
+    }
+    .pwd-msg {
+      font-size: .82rem;
+      font-weight: 600;
+      padding: .6rem .9rem;
+      border-radius: var(--r-sm);
+      margin-top: .5rem;
+      display: none;
+    }
+    .pwd-msg.ok { background: var(--green-lt); color: var(--green); display: block; }
+    .pwd-msg.err { background: var(--red-lt); color: var(--red); display: block; }
+
+    /* Toast */
+    .admin-toast {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--navy);
+      color: var(--white);
+      padding: .9rem 1.4rem;
+      border-radius: var(--r-lg);
+      display: flex; align-items: center; gap: .7rem;
+      font-weight: 600; font-size: .88rem;
+      box-shadow: var(--shadow-lg);
+      z-index: 99999;
+      transform: translateY(120px); opacity: 0;
+      transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .35s ease;
+      border-left: 4px solid var(--orange);
+    }
+    .admin-toast.show { transform: translateY(0); opacity: 1; }
+    .admin-toast.green { border-left-color: var(--green); }
+    .admin-toast.red   { border-left-color: var(--red); }
+
+    /* Loading spinner */
+    .cal-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: .9rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 28px; height: 28px;
+      border: 3px solid rgba(242,100,25,.2);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+      margin-bottom: .8rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Config panel */
+    .config-section {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 1.8rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .config-title {
+      font-family: var(--font-h);
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin-bottom: .3rem;
+    }
+    .config-sub {
+      font-size: .83rem;
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      display: flex; align-items: center; gap: .5rem;
+      background: var(--white);
+      border-radius: var(--r-full);
+      padding: .5rem 1.1rem;
+      box-shadow: var(--shadow-sm);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .stat-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .stat-pill .dot.green { background: var(--green); }
+    .stat-pill .dot.gray  { background: #d1d5db; }
+
+    /* ── Sección Reservas ── */
+    .reservas-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: .8rem;
+    }
+    .reservas-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--orange);
+      color: var(--white);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      padding: .3rem .8rem;
+      border-radius: var(--r-full);
+    }
+    .reservas-filtros {
+      display: flex;
+      gap: .5rem;
+    }
+    .filtro-btn {
+      padding: .4rem 1rem;
+      border-radius: var(--r-full);
+      border: 1.5px solid rgba(0,0,0,.1);
+      background: var(--gray-lt);
+      font-family: var(--font-b);
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all var(--tr);
+    }
+    .filtro-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+    .reservas-lista {
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+    }
+    .reserva-item {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,.05);
+      border-left: 4px solid var(--orange);
+      transition: transform var(--tr), box-shadow var(--tr);
+      flex-wrap: wrap;
+    }
+    .reserva-item:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+    .reserva-item.atendida { border-left-color: var(--green); opacity: .6; }
+    .reserva-info { flex: 1; min-width: 200px; }
+    .reserva-svc {
+      font-family: var(--font-h);
+      font-size: 1.2rem;
+      color: var(--navy);
+      letter-spacing: .03em;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .reserva-detalle {
+      font-size: .8rem;
+      color: var(--gray);
+      margin-top: .2rem;
+    }
+    .reserva-detalle strong { color: var(--navy); }
+    .reserva-tiempo {
+      font-size: .72rem;
+      color: var(--gray);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .reserva-estado {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .7rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: var(--r-full);
+    }
+    .reserva-estado.pendiente { background: rgba(242,100,25,.12); color: var(--orange); }
+    .reserva-estado.atendida  { background: var(--green-lt); color: var(--green); }
+    .reserva-actions { display: flex; gap: .5rem; align-items: center; }
+    .btn-atender {
+      padding: .45rem 1rem;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r-full);
+      font-family: var(--font-b);
+      font-size: .75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .btn-atender:hover { background: #15803d; }
+    .btn-eliminar {
+      padding: .45rem .7rem;
+      background: var(--red-lt);
+      color: var(--red);
+      border: none;
+      border-radius: var(--r-full);
+      font-size: .75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .btn-eliminar:hover { background: #fecaca; }
+    .reservas-vacio {
+      text-align: center;
+      padding: 3rem;
+      color: var(--gray);
+      font-size: .9rem;
+    }
+    .tab-bar {
+      display: flex;
+      gap: .5rem;
+      margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .6rem 1.4rem;
+      border-radius: var(--r-full);
+      border: 1.5px solid rgba(0,0,0,.08);
+      background: var(--gray-lt);
+      font-family: var(--font-b);
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--gray);
+      cursor: pointer;
+      transition: all var(--tr);
+    }
+    .tab-btn.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+    .tab-badge {
+      background: var(--orange);
+      color: var(--white);
+      font-size: .65rem;
+      font-weight: 800;
+      padding: .1rem .45rem;
+      border-radius: var(--r-full);
+      min-width: 18px;
+      text-align: center;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Modo selección múltiple */
+    .multi-bar {
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .multi-bar.visible { display: flex; }
+    .multi-bar-txt {
+      color: var(--white);
+      font-size: .88rem;
+      font-weight: 700;
+      flex: 1;
+    }
+    .multi-count {
+      background: var(--orange);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 800;
+      padding: .2rem .6rem;
+      border-radius: var(--r-full);
+    }
+    .multi-save-btn {
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r-full);
+      padding: .5rem 1.2rem;
+      font-family: var(--font-b);
+      font-weight: 700;
+      font-size: .82rem;
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .multi-save-btn:hover { background: #15803d; }
+    .multi-cancel-btn {
+      background: rgba(255,255,255,.15);
+      color: var(--white);
+      border: none;
+      border-radius: var(--r-full);
+      padding: .5rem 1.2rem;
+      font-family: var(--font-b);
+      font-weight: 700;
+      font-size: .82rem;
+      cursor: pointer;
+      transition: background var(--tr);
+    }
+    .multi-cancel-btn:hover { background: rgba(255,255,255,.25); }
+    .btn-multi-toggle {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--gray-lt);
+      border: 1.5px solid rgba(0,0,0,.08);
+      border-radius: var(--r-full);
+      padding: .45rem 1rem;
+      font-family: var(--font-b);
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all var(--tr);
+    }
+    .btn-multi-toggle.active {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+    .cal-slot.multi-selected {
+      background: rgba(26,54,104,.15);
+      border-color: var(--navy-mid);
+    }
+    .cal-slot.multi-selected .slot-icon { opacity: 1; }
+
+    /* Mini popup modalidad */
+    .mini-modal-overlay {
+      position: fixed; inset: 0; z-index: 9996;
+      background: rgba(0,0,0,.4);
+      backdrop-filter: blur(3px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity .15s ease;
+    }
+    .mini-modal-overlay.open { opacity: 1; pointer-events: all; }
+    .mini-modal-box {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 1.5rem;
+      width: 100%; max-width: 320px;
+      box-shadow: var(--shadow-lg);
+      transform: scale(.94);
+      transition: transform .2s cubic-bezier(.34,1.56,.64,1);
+    }
+    .mini-modal-overlay.open .mini-modal-box { transform: scale(1); }
+    .mini-modal-title {
+      font-family: var(--font-h);
+      font-size: 1.3rem;
+      color: var(--navy);
+      margin-bottom: .2rem;
+    }
+    .mini-modal-sub {
+      font-size: .78rem;
+      color: var(--gray);
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+    }
+    .mini-mod-btns {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .mini-mod-btn {
+      padding: .7rem 1rem;
+      border-radius: var(--r-md);
+      border: 1.5px solid rgba(0,0,0,.08);
+      background: var(--gray-lt);
+      font-family: var(--font-b);
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--navy);
+      cursor: pointer;
+      text-align: left;
+      transition: all var(--tr);
+    }
+    .mini-mod-btn:hover {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+      .admin-main { padding: 1rem; }
+      .week-label { font-size: 1.1rem; min-width: 180px; }
+      .admin-header { padding: 0 1rem; }
+      .cal-grid { grid-template-columns: 50px repeat(7, 1fr); }
+      .cal-slot { min-height: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ PANTALLA DE LOGIN ══════════════════════════════════ -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <div class="login-logo">Elemento<span style="color:var(--orange)">·</span>Sinergia</div>
+      <div class="login-sub">Panel de administración</div>
+      <label class="login-label" for="loginPwd">Contraseña</label>
+      <input type="password" id="loginPwd" class="login-input" placeholder="••••••••" autocomplete="current-password" />
+      <button class="login-btn" id="loginBtn">Entrar al panel</button>
+      <p class="login-error" id="loginError">Contraseña incorrecta. Intenta de nuevo.</p>
+    </div>
+  </div>
+
+  <!-- ══ PANEL PRINCIPAL ════════════════════════════════════ -->
+  <div id="adminPanel">
+
+    <header class="admin-header">
+      <div class="admin-header-left">
+        <span class="admin-logo">Elemento<span>·</span>Sinergia</span>
+        <span class="admin-badge">Admin</span>
+      </div>
+      <div class="admin-header-right">
+        <a href="index.html" class="header-btn" target="_blank">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Ver página
+        </a>
+        <button class="header-btn" id="openPwdModal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Cambiar contraseña
+        </button>
+        <button class="header-btn danger" id="logoutBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Salir
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- Tabs navegación -->
+      <div class="tab-bar">
+        <button class="tab-btn active" id="tabCalBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Calendario
+        </button>
+        <button class="tab-btn" id="tabResBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Reservas
+          <span class="tab-badge" id="tabResBadge">0</span>
+        </button>
+      </div>
+
+      <!-- TAB CALENDARIO -->
+      <div class="tab-content active" id="tabCal">
+
+      <!-- Stats bar -->
+      <div class="stats-bar" id="statsBar">
+        <div class="stat-pill"><span class="dot green"></span><span id="statAvail">0</span> slots disponibles esta semana</div>
+        <div class="stat-pill"><span class="dot gray"></span><span id="statOff">0</span> slots sin activar</div>
+      </div>
+
+      <!-- Toolbar semana -->
+      <div class="week-toolbar">
+        <div class="week-nav">
+          <button class="week-nav-btn" id="prevWeek" title="Semana anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="week-label" id="weekLabel">Cargando...</div>
+          <button class="week-nav-btn" id="nextWeek" title="Semana siguiente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div class="toolbar-right">
+          <button class="week-today-btn" id="goToday">Semana actual</button>
+          <button class="btn-multi-toggle" id="btnMulti">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:13px;height:13px;"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Selección múltiple
+          </button>
+          <div class="legend">
+            <div class="legend-item"><span class="legend-dot available"></span>Disponible</div>
+            <div class="legend-item"><span class="legend-dot off"></span>No disponible</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra selección múltiple -->
+      <div class="multi-bar" id="multiBar">
+        <div class="multi-bar-txt">
+          Modo selección múltiple activo — haz clic en los slots que quieres activar
+          <span class="multi-count" id="multiCount">0 seleccionados</span>
+        </div>
+        <button class="multi-save-btn" id="multiSave">💾 Guardar todos</button>
+        <button class="multi-cancel-btn" id="multiCancel">✕ Cancelar</button>
+      </div>
+
+      <!-- Calendario -->
+      <div class="cal-wrap">
+        <div class="cal-grid" id="calGrid">
+          <div class="cal-loading"><div class="spinner"></div><br>Conectando con Firebase...</div>
+        </div>
+      </div>
+
+      <!-- Instrucciones rápidas -->
+      <div class="config-section">
+        <div class="config-title">¿Cómo usar el panel?</div>
+        <div class="config-sub">
+          Haz clic en cualquier celda del calendario para activar o desactivar ese horario. 
+          Al activarlo, elige la modalidad (presencial u online). 
+          Los cambios se guardan automáticamente en Firebase y se reflejan en la página pública en segundos. 
+          Las celdas del pasado no se pueden editar.
+        </div>
+      </div>
+
+      </div><!-- fin tab-cal -->
+
+      <!-- TAB RESERVAS -->
+      <div class="tab-content" id="tabRes">
+        <div class="config-section">
+          <div class="reservas-header">
+            <div>
+              <div class="config-title">Solicitudes de reserva</div>
+              <div class="config-sub" style="margin-bottom:0">Aquí aparecen todas las reservas que los usuarios han solicitado desde la página.</div>
+            </div>
+            <div class="reservas-filtros">
+              <button class="filtro-btn active" id="filtroTodas">Todas</button>
+              <button class="filtro-btn" id="filtroPendientes">Pendientes</button>
+              <button class="filtro-btn" id="filtroAtendidas">Atendidas</button>
+            </div>
+          </div>
+          <div class="reservas-lista" id="reservasLista">
+            <div class="reservas-vacio"><div class="spinner"></div><br>Cargando reservas...</div>
+          </div>
+        </div>
+      </div><!-- fin tab-res -->
+
+    </main>
+  </div>
+
+  <!-- ══ MODAL EDICIÓN DE SLOT ══════════════════════════════ -->
+  <div class="slot-modal-overlay" id="slotModalOverlay">
+    <div class="slot-modal-box">
+      <div class="slot-modal-title" id="slotModalTitle">Slot</div>
+      <div class="slot-modal-date" id="slotModalDate"></div>
+
+      <div class="form-group">
+        <div class="toggle-row" id="toggleAvail">
+          <span class="toggle-row-label">Disponible para reserva</span>
+          <div class="toggle-switch" id="toggleSwitch"></div>
+        </div>
+      </div>
+
+      <div id="slotFields">
+        <div class="form-group">
+          <label class="form-label">Modalidad</label>
+          <div class="form-select-wrap">
+            <select class="form-select" id="slotModalidad">
+              <option value="Presencial">📍 Presencial</option>
+              <option value="Online">💻 Online (Zoom)</option>
+              <option value="Ambas">📍💻 Presencial y Online</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn cancel" id="slotCancel">Cancelar</button>
+        <button class="modal-btn save" id="slotSave">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MODAL CAMBIO DE CONTRASEÑA ════════════════════════ -->
+  <div class="pwd-modal-overlay" id="pwdModalOverlay">
+    <div class="pwd-modal-box">
+      <div class="pwd-modal-title">Cambiar contraseña</div>
+      <div class="pwd-modal-sub">La nueva contraseña se guarda en Firebase y se requiere para entrar al panel.</div>
+
+      <div class="form-group">
+        <label class="form-label">Contraseña actual</label>
+        <input type="password" class="form-input" id="pwdCurrent" placeholder="••••••••" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nueva contraseña</label>
+        <input type="password" class="form-input" id="pwdNew" placeholder="Mínimo 6 caracteres" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirmar nueva contraseña</label>
+        <input type="password" class="form-input" id="pwdConfirm" placeholder="Repite la nueva contraseña" />
+      </div>
+
+      <div class="pwd-msg" id="pwdMsg"></div>
+
+      <div class="modal-actions">
+        <button class="modal-btn cancel" id="pwdCancel">Cancelar</button>
+        <button class="modal-btn save" id="pwdSave">Actualizar contraseña</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mini modal modalidad -->
+  <div class="mini-modal-overlay" id="miniModalOverlay">
+    <div class="mini-modal-box">
+      <div class="mini-modal-title" id="miniModalTitle">Slot</div>
+      <div class="mini-modal-sub" id="miniModalSub"></div>
+      <div class="mini-mod-btns">
+        <button class="mini-mod-btn" onclick="elegirModalidadMulti('Presencial')">📍 Presencial</button>
+        <button class="mini-mod-btn" onclick="elegirModalidadMulti('Online')">💻 Online (Zoom)</button>
+        <button class="mini-mod-btn" onclick="elegirModalidadMulti('Ambas')">📍💻 Presencial y Online</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="adminToast">
+    <span id="toastIcon">✅</span>
+    <span id="toastText">Guardado</span>
+  </div>
+
+  <!-- ══ FIREBASE SDK ════════════════════════════════════════ -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import {
+      getFirestore, doc, getDoc, setDoc, deleteDoc,
+      collection, getDocs, query, where, orderBy, updateDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    /* ══════════════════════════════════════════════════════
+       🔧 CONFIGURA AQUÍ TUS CREDENCIALES DE FIREBASE
+       Ve a: console.firebase.google.com → Tu proyecto →
+       Configuración → Aplicaciones web → SDK Config
+    ══════════════════════════════════════════════════════ */
+    const firebaseConfig = {
+      apiKey:            "AIzaSyC_k8SIIMG9Qvn69AOcQ2rF3cUWfZySPFk",
+      authDomain:        "elemento-sinergia.firebaseapp.com",
+      projectId:         "elemento-sinergia",
+      storageBucket:     "elemento-sinergia.firebasestorage.app",
+      messagingSenderId: "782989236753",
+      appId:             "1:782989236753:web:e809a172257acc0139afb0"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    /* ── Constantes ──────────────────────────────────────── */
+    const HORAS   = ['06:00','07:00','08:00','09:00','10:00','11:00',
+                     '12:00','13:00','14:00','15:00','16:00','17:00',
+                     '18:00','19:00','20:00'];
+    const DIAS    = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const DIAS_L  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const MESES   = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const SVC_EMO = { Rumba:'🕺', Yoga:'🧘', Pilates:'💪', Masoterapia:'🤲', Stretching:'🤸' };
+    const PWD_DOC = 'config/admin_password';
+    const DEFAULT_PWD = 'sinergia2026';
+
+    /* ── Estado ──────────────────────────────────────────── */
+    let weekOffset = 0;
+    let slotsCache = {};
+    let editingKey  = null;
+    let isAvailable = false;
+    let adminPwd    = null;
+
+    /* ── Utils de fecha ─────────────────────────────────── */
+    function getWeekDates(offset) {
+      const today = new Date();
+      const day   = today.getDay();
+      const monday = new Date(today);
+      monday.setDate(today.getDate() - day + 1 + offset * 7);
+      monday.setHours(0,0,0,0);
+      const days = [];
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        days.push(d);
+      }
+      return days;
+    }
+
+    function dateKey(d, hora) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,'0');
+      const day = String(d.getDate()).padStart(2,'0');
+      return `${y}-${m}-${day}_${hora}`;
+    }
+
+    function isPast(d, hora) {
+      const now = new Date();
+      const slotDate = new Date(d);
+      const [h,min] = hora.split(':');
+      slotDate.setHours(parseInt(h), parseInt(min), 0, 0);
+      return slotDate < now;
+    }
+
+    function isToday(d) {
+      const t = new Date();
+      return d.getDate()===t.getDate() && d.getMonth()===t.getMonth() && d.getFullYear()===t.getFullYear();
+    }
+
+    /* ── Contraseña ─────────────────────────────────────── */
+    async function loadPassword() {
+      try {
+        const snap = await getDoc(doc(db, 'config', 'admin_password'));
+        adminPwd = snap.exists() ? snap.data().value : DEFAULT_PWD;
+      } catch {
+        adminPwd = DEFAULT_PWD;
+      }
+    }
+
+    /* ── Login ──────────────────────────────────────────── */
+    document.getElementById('loginBtn').addEventListener('click', async () => {
+      const input = document.getElementById('loginPwd').value;
+      if (!adminPwd) await loadPassword();
+      if (input === adminPwd) {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('adminPanel').classList.add('visible');
+        renderCalendar();
+        cargarBadge();
+      } else {
+        document.getElementById('loginError').classList.add('show');
+        document.getElementById('loginPwd').value = '';
+      }
+    });
+    document.getElementById('loginPwd').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('loginBtn').click();
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      document.getElementById('adminPanel').classList.remove('visible');
+      document.getElementById('loginScreen').classList.remove('hidden');
+      document.getElementById('loginPwd').value = '';
+      document.getElementById('loginError').classList.remove('show');
+    });
+
+    /* ── Cargar slots semana ─────────────────────────────── */
+    async function loadWeekSlots(days) {
+      slotsCache = {};
+      const keys = [];
+      days.forEach(d => HORAS.forEach(h => keys.push(dateKey(d,h))));
+      // Carga paralela — todos a la vez
+      await Promise.all(keys.map(async function(key) {
+        try {
+          const snap = await getDoc(doc(db,'horarios',key));
+          if (snap.exists()) slotsCache[key] = snap.data();
+        } catch {}
+      }));
+    }
+
+    /* ── Renderizar calendario ──────────────────────────── */
+    async function renderCalendar() {
+      const grid = document.getElementById('calGrid');
+      grid.innerHTML = '<div class="cal-loading"><div class="spinner"></div><br>Cargando horarios...</div>';
+
+      const days = getWeekDates(weekOffset);
+      await loadWeekSlots(days);
+
+      // Actualizar label semana
+      const d0 = days[0], d6 = days[6];
+      document.getElementById('weekLabel').textContent =
+        `${d0.getDate()} ${MESES[d0.getMonth()]} – ${d6.getDate()} ${MESES[d6.getMonth()]} ${d6.getFullYear()}`;
+
+      grid.innerHTML = '';
+
+      // Esquina vacía
+      grid.appendChild(Object.assign(document.createElement('div'), {}));
+
+      // Cabecera días
+      days.forEach(d => {
+        const head = document.createElement('div');
+        head.className = 'cal-day-head' + (isToday(d) ? ' today' : '');
+        head.innerHTML = `<div class="dow">${DIAS[d.getDay()]}</div><div class="dom">${d.getDate()}</div>`;
+        grid.appendChild(head);
+      });
+
+      // Filas de horas
+      let avail = 0, off = 0;
+      HORAS.forEach(hora => {
+        const label = document.createElement('div');
+        label.className = 'cal-hour-label';
+        label.textContent = hora;
+        grid.appendChild(label);
+
+        days.forEach(d => {
+          const key  = dateKey(d, hora);
+          const data = slotsCache[key];
+          const past = isPast(d, hora);
+          const slot = document.createElement('div');
+          slot.className = 'cal-slot' + (data ? ' available' : '') + (past ? ' past' : '');
+          slot.dataset.key = key;
+
+          if (data) {
+            avail++;
+            const modIcon = data.modalidad === 'Online' ? '💻' : data.modalidad === 'Ambas' ? '📍💻' : '📍';
+            slot.innerHTML = `
+              <span class="slot-icon">✅</span>
+              <span class="slot-service">Disponible</span>
+              <span class="slot-modal">${modIcon}</span>`;
+          } else {
+            off++;
+            slot.innerHTML = `<span class="slot-icon">＋</span>`;
+          }
+
+          if (!past) {
+            slot.addEventListener('click', () => {
+              if (multiMode) {
+                // Modo selección múltiple
+                if (multiPending[key]) {
+                  // Deseleccionar
+                  delete multiPending[key];
+                  slot.classList.remove('multi-selected');
+                  slot.innerHTML = data
+                    ? '<span class="slot-icon">✅</span><span class="slot-service">Disponible</span>'
+                    : '<span class="slot-icon">＋</span>';
+                  actualizarConteo();
+                } else if (!data) {
+                  // Solo seleccionar slots vacíos
+                  abrirMiniModal(key, d, hora);
+                }
+              } else {
+                openSlotModal(key, d, hora, data);
+              }
+            });
+          }
+          grid.appendChild(slot);
+        });
+      });
+
+      document.getElementById('statAvail').textContent = avail;
+      document.getElementById('statOff').textContent   = off;
+    }
+
+    /* ── Modal de slot ──────────────────────────────────── */
+    function openSlotModal(key, d, hora, data) {
+      editingKey  = key;
+      isAvailable = !!data;
+
+      const dow = DIAS_L[d.getDay()];
+      const fecha = `${dow}, ${d.getDate()} de ${MESES[d.getMonth()]} ${d.getFullYear()}`;
+
+      document.getElementById('slotModalTitle').textContent = `${hora} — ${hora.split(':')[0]}:59`;
+      document.getElementById('slotModalDate').textContent  = fecha;
+
+      const sw = document.getElementById('toggleSwitch');
+      sw.classList.toggle('on', isAvailable);
+
+      document.getElementById('slotFields').style.display = isAvailable ? 'block' : 'none';
+
+      if (data) {
+        document.getElementById('slotModalidad').value = data.modalidad || 'Presencial';
+      }
+
+      document.getElementById('slotModalOverlay').classList.add('open');
+    }
+
+    document.getElementById('toggleAvail').addEventListener('click', () => {
+      isAvailable = !isAvailable;
+      document.getElementById('toggleSwitch').classList.toggle('on', isAvailable);
+      document.getElementById('slotFields').style.display = isAvailable ? 'block' : 'none';
+    });
+
+    document.getElementById('slotCancel').addEventListener('click', closeSlotModal);
+    document.getElementById('slotModalOverlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('slotModalOverlay')) closeSlotModal();
+    });
+
+    function closeSlotModal() {
+      document.getElementById('slotModalOverlay').classList.remove('open');
+      editingKey = null;
+    }
+
+    document.getElementById('slotSave').addEventListener('click', async () => {
+      if (!editingKey) return;
+      try {
+        if (isAvailable) {
+          const modalidad = document.getElementById('slotModalidad').value;
+          await setDoc(doc(db,'horarios',editingKey), { modalidad });
+        } else {
+          await deleteDoc(doc(db,'horarios',editingKey));
+        }
+        closeSlotModal();
+        showToast(isAvailable ? '✅ Slot activado' : '🗑️ Slot desactivado', isAvailable ? 'green' : '');
+        await renderCalendar();
+      } catch(err) {
+        showToast('❌ Error al guardar: ' + err.message, 'red');
+      }
+    });
+
+    /* ── Navegación semana ──────────────────────────────── */
+    document.getElementById('prevWeek').addEventListener('click', () => { weekOffset--; renderCalendar(); });
+    document.getElementById('nextWeek').addEventListener('click', () => { weekOffset++; renderCalendar(); });
+    document.getElementById('goToday').addEventListener('click', () => { weekOffset = 0; renderCalendar(); });
+
+    /* ── Selección múltiple ──────────────────────────────── */
+    let multiMode    = false;
+    let multiPending = {}; // { key: { d, hora } } — slots seleccionados esperando modalidad
+    let miniKey      = null;
+    let miniD        = null;
+    let miniHora     = null;
+
+    document.getElementById('btnMulti').addEventListener('click', function() {
+      multiMode = !multiMode;
+      this.classList.toggle('active', multiMode);
+      document.getElementById('multiBar').classList.toggle('visible', multiMode);
+      if (!multiMode) limpiarMulti();
+    });
+
+    document.getElementById('multiCancel').addEventListener('click', function() {
+      multiMode = false;
+      document.getElementById('btnMulti').classList.remove('active');
+      document.getElementById('multiBar').classList.remove('visible');
+      limpiarMulti();
+    });
+
+    document.getElementById('multiSave').addEventListener('click', async function() {
+      const keys = Object.keys(multiPending);
+      if (!keys.length) { showToast('⚠️ No hay slots seleccionados', ''); return; }
+      this.textContent = 'Guardando...';
+      this.disabled = true;
+      try {
+        await Promise.all(keys.map(async function(key) {
+          const info = multiPending[key];
+          await setDoc(doc(db,'horarios',key), { modalidad: info.modalidad });
+        }));
+        showToast('✅ ' + keys.length + ' slots guardados', 'green');
+        multiMode = false;
+        document.getElementById('btnMulti').classList.remove('active');
+        document.getElementById('multiBar').classList.remove('visible');
+        limpiarMulti();
+        await renderCalendar();
+      } catch(e) {
+        showToast('❌ Error: ' + e.message, 'red');
+      }
+      this.textContent = '💾 Guardar todos';
+      this.disabled = false;
+    });
+
+    function limpiarMulti() {
+      multiPending = {};
+      document.getElementById('multiCount').textContent = '0 seleccionados';
+      document.querySelectorAll('.cal-slot.multi-selected').forEach(function(s) {
+        s.classList.remove('multi-selected');
+        s.innerHTML = '<span class="slot-icon">＋</span>';
+      });
+    }
+
+    function actualizarConteo() {
+      const n = Object.keys(multiPending).length;
+      document.getElementById('multiCount').textContent = n + ' seleccionado' + (n===1?'':'s');
+    }
+
+    // Mini modal de modalidad
+    function abrirMiniModal(key, d, hora) {
+      miniKey  = key;
+      miniD    = d;
+      miniHora = hora;
+      const DIAS_L2 = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+      const MESES2  = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+      document.getElementById('miniModalTitle').textContent = hora + ' — ' + DIAS_L2[d.getDay()];
+      document.getElementById('miniModalSub').textContent   = d.getDate() + ' ' + MESES2[d.getMonth()] + ' · Elige la modalidad';
+      document.getElementById('miniModalOverlay').classList.add('open');
+    }
+
+    window.elegirModalidadMulti = function(modalidad) {
+      document.getElementById('miniModalOverlay').classList.remove('open');
+      if (!miniKey) return;
+      multiPending[miniKey] = { d: miniD, hora: miniHora, modalidad: modalidad };
+      // Marcar slot visualmente
+      const slot = document.querySelector('[data-key="' + miniKey + '"]');
+      if (slot) {
+        slot.classList.add('multi-selected');
+        const modIcon = modalidad === 'Online' ? '💻' : modalidad === 'Ambas' ? '📍💻' : '📍';
+        slot.innerHTML = '<span class="slot-icon">✓</span><span class="slot-service" style="color:var(--navy-mid);">Listo</span><span class="slot-modal" style="color:var(--navy-mid);">' + modIcon + '</span>';
+      }
+      actualizarConteo();
+      miniKey = null; miniD = null; miniHora = null;
+    };
+
+    document.getElementById('miniModalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) this.classList.remove('open');
+    });
+
+    /* ── Cambio de contraseña ───────────────────────────── */
+    document.getElementById('openPwdModal').addEventListener('click', () => {
+      document.getElementById('pwdCurrent').value = '';
+      document.getElementById('pwdNew').value     = '';
+      document.getElementById('pwdConfirm').value = '';
+      document.getElementById('pwdMsg').className = 'pwd-msg';
+      document.getElementById('pwdModalOverlay').classList.add('open');
+    });
+    document.getElementById('pwdCancel').addEventListener('click', () => {
+      document.getElementById('pwdModalOverlay').classList.remove('open');
+    });
+    document.getElementById('pwdModalOverlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('pwdModalOverlay'))
+        document.getElementById('pwdModalOverlay').classList.remove('open');
+    });
+
+    document.getElementById('pwdSave').addEventListener('click', async () => {
+      const cur  = document.getElementById('pwdCurrent').value;
+      const nw   = document.getElementById('pwdNew').value;
+      const conf = document.getElementById('pwdConfirm').value;
+      const msg  = document.getElementById('pwdMsg');
+
+      if (cur !== adminPwd) {
+        msg.textContent = '❌ La contraseña actual es incorrecta.';
+        msg.className = 'pwd-msg err'; return;
+      }
+      if (nw.length < 6) {
+        msg.textContent = '⚠️ La nueva contraseña debe tener al menos 6 caracteres.';
+        msg.className = 'pwd-msg err'; return;
+      }
+      if (nw !== conf) {
+        msg.textContent = '⚠️ Las contraseñas no coinciden.';
+        msg.className = 'pwd-msg err'; return;
+      }
+      try {
+        await setDoc(doc(db,'config','admin_password'), { value: nw });
+        adminPwd = nw;
+        msg.textContent = '✅ Contraseña actualizada correctamente.';
+        msg.className = 'pwd-msg ok';
+        setTimeout(() => document.getElementById('pwdModalOverlay').classList.remove('open'), 1800);
+      } catch(err) {
+        msg.textContent = '❌ Error: ' + err.message;
+        msg.className = 'pwd-msg err';
+      }
+    });
+
+    /* ── Toast ──────────────────────────────────────────── */
+    function showToast(msg, type='') {
+      const t = document.getElementById('adminToast');
+      document.getElementById('toastText').textContent = msg;
+      t.className = 'admin-toast show ' + type;
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    /* ── Init ───────────────────────────────────────────── */
+    loadPassword();
+
+    /* ── Tabs ─────────────────────────────────────────── */
+    document.getElementById('tabCalBtn').addEventListener('click', function() {
+      document.getElementById('tabCal').classList.add('active');
+      document.getElementById('tabRes').classList.remove('active');
+      document.getElementById('tabCalBtn').classList.add('active');
+      document.getElementById('tabResBtn').classList.remove('active');
+    });
+    document.getElementById('tabResBtn').addEventListener('click', function() {
+      document.getElementById('tabRes').classList.add('active');
+      document.getElementById('tabCal').classList.remove('active');
+      document.getElementById('tabResBtn').classList.add('active');
+      document.getElementById('tabCalBtn').classList.remove('active');
+      cargarReservas();
+    });
+
+    /* ── Reservas ─────────────────────────────────────── */
+    const SVC_EMO_R = { Rumba:'🕺', Yoga:'🧘', Pilates:'💪', Masoterapia:'🤲', Stretching:'🤸' };
+    let filtroActual = 'todas';
+    let reservasCache = [];
+
+    async function cargarReservas() {
+      const lista = document.getElementById('reservasLista');
+      lista.innerHTML = '<div class="reservas-vacio"><div class="spinner"></div><br>Cargando...</div>';
+      try {
+        const snap = await getDocs(collection(db, 'reservas'));
+        reservasCache = [];
+        snap.forEach(function(d) {
+          const data = d.data();
+          reservasCache.push({
+            id: d.id, servicio: data.servicio||'', hora: data.hora||'',
+            fecha: data.fecha||'', modalidad: data.modalidad||'',
+            nombre: data.nombre||'', direccion: data.direccion||'',
+            slotKey: data.slotKey||'',
+            estado: data.estado||'pendiente', creadoEn: data.creadoEn||null
+          });
+        });
+        // Ordenar por fecha de creacion descendente
+        reservasCache.sort(function(a, b) {
+          if (!a.creadoEn) return 1;
+          if (!b.creadoEn) return -1;
+          return b.creadoEn.seconds - a.creadoEn.seconds;
+        });
+        // Actualizar badge inmediatamente
+        const pendientes = reservasCache.filter(function(r){return r.estado==='pendiente';}).length;
+        document.getElementById('tabResBadge').textContent = pendientes;
+        renderReservas();
+      } catch(e) {
+        lista.innerHTML = '<div class="reservas-vacio">Error: ' + e.message + '</div>';
+      }
+    }
+
+    // Cargar badge al iniciar sesion
+    async function cargarBadge() {
+      try {
+        const snap = await getDocs(collection(db, 'reservas'));
+        let pendientes = 0;
+        snap.forEach(function(d) {
+          if ((d.data().estado || 'pendiente') === 'pendiente') pendientes++;
+        });
+        document.getElementById('tabResBadge').textContent = pendientes;
+      } catch(e) {}
+    }
+
+    function renderReservas() {
+      const lista = document.getElementById('reservasLista');
+      let items = reservasCache.slice();
+      if (filtroActual === 'pendientes') items = items.filter(function(r){return r.estado==='pendiente';});
+      if (filtroActual === 'atendidas')  items = items.filter(function(r){return r.estado==='atendida';});
+      const pendientes = reservasCache.filter(function(r){return r.estado==='pendiente';}).length;
+      document.getElementById('tabResBadge').textContent = pendientes;
+      if (!items.length) {
+        lista.innerHTML = '<div class="reservas-vacio">No hay reservas ' + (filtroActual!=='todas'?filtroActual:'') + '.</div>';
+        return;
+      }
+      lista.innerHTML = '';
+      items.forEach(function(r) {
+        const div = document.createElement('div');
+        div.className = 'reserva-item' + (r.estado==='atendida'?' atendida':'');
+        const emo = SVC_EMO_R[r.servicio]||'📅';
+        const tiempo = r.creadoEn ? new Date(r.creadoEn.seconds*1000).toLocaleString('es-CO',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : 'Reciente';
+        div.innerHTML =
+          '<div class="reserva-info"><div class="reserva-svc">'+emo+' '+r.servicio+'</div>' +
+          '<div class="reserva-detalle"><strong>'+r.fecha+'</strong> · '+r.hora+' · '+r.modalidad+'</div>' +
+          (r.nombre ? '<div class="reserva-detalle">👤 '+r.nombre+(r.direccion?' · 📍 '+r.direccion:'')+'</div>' : '') +
+          '</div>' +
+          '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;">' +
+          '<span class="reserva-tiempo">'+tiempo+'</span>' +
+          '<span class="reserva-estado '+r.estado+'">'+(r.estado==='pendiente'?'⏳ Pendiente':'✅ Atendida')+'</span></div>' +
+          '<div class="reserva-actions">' +
+          (r.estado==='pendiente'?'<button class="btn-atender" onclick="marcarAtendida(\''+r.id+'\')">✅ Atendida</button>':'') +
+          '<button class="btn-eliminar" onclick="eliminarReserva(\''+r.id+'\')">🗑</button></div>';
+        lista.appendChild(div);
+      });
+    }
+
+    window.marcarAtendida = async function(id) {
+      try {
+        // 1. Marcar como atendida en reservas
+        await updateDoc(doc(db,'reservas',id),{estado:'atendida'});
+
+        // 2. Eliminar el slot del calendario si aún existe
+        const reserva = reservasCache.find(function(r){ return r.id === id; });
+        if (reserva && reserva.slotKey) {
+          try { await deleteDoc(doc(db,'horarios',reserva.slotKey)); } catch(e) {}
+        }
+
+        // 3. Actualizar cache y UI
+        reservasCache = reservasCache.map(function(r){return r.id===id?Object.assign({},r,{estado:'atendida'}):r;});
+        renderReservas();
+        showToast('✅ Marcada como atendida','green');
+      } catch(e){showToast('❌ Error: '+e.message,'red');}
+    };
+    window.eliminarReserva = async function(id) {
+      try {
+        await deleteDoc(doc(db,'reservas',id));
+        reservasCache = reservasCache.filter(function(r){return r.id!==id;});
+        renderReservas(); showToast('🗑️ Reserva eliminada','');
+      } catch(e){showToast('❌ Error: '+e.message,'red');}
+    };
+    document.getElementById('filtroTodas').addEventListener('click',function(){
+      filtroActual='todas'; document.querySelectorAll('.filtro-btn').forEach(function(b){b.classList.remove('active');}); this.classList.add('active'); renderReservas();
+    });
+    document.getElementById('filtroPendientes').addEventListener('click',function(){
+      filtroActual='pendientes'; document.querySelectorAll('.filtro-btn').forEach(function(b){b.classList.remove('active');}); this.classList.add('active'); renderReservas();
+    });
+    document.getElementById('filtroAtendidas').addEventListener('click',function(){
+      filtroActual='atendidas'; document.querySelectorAll('.filtro-btn').forEach(function(b){b.classList.remove('active');}); this.classList.add('active'); renderReservas();
+    });
+
+  </script>
+</body>
+</html>

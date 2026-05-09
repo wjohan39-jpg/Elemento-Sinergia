@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoga | Elemento Sinergia</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Willstyle.css" />
+  <style>
+    .blog-hero { margin-top: var(--nav-h); min-height: 55vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
+    .blog-hero-bg { position: absolute; inset: 0; background: url('/Multimedia/blogyoga.jpg') center/cover no-repeat; }
+    .blog-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,31,66,.92) 0%, rgba(11,31,66,.5) 50%, rgba(0,0,0,.2) 100%); }
+    .blog-hero-content { position: relative; z-index: 2; padding: 4rem 5% 3.5rem; width: 100%; max-width: 1200px; margin: 0 auto; }
+    .blog-back { display: inline-flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.7); text-decoration: none; font-size: .85rem; font-weight: 600; letter-spacing: .06em; margin-bottom: 1.5rem; transition: color .25s; }
+    .blog-back:hover { color: var(--orange); }
+    .blog-back svg { width: 16px; height: 16px; }
+    .blog-hero-tag { display: inline-flex; align-items: center; gap: .5rem; background: var(--navy-mid); color: var(--white); font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: .35rem 1rem; border-radius: var(--r-full); margin-bottom: 1rem; }
+    .blog-hero h1 { font-family: var(--font-h); font-size: clamp(3rem, 7vw, 6rem); color: var(--white); line-height: 1; letter-spacing: .03em; margin-bottom: 1rem; }
+    .blog-hero-sub { color: rgba(255,255,255,.8); font-size: 1.05rem; max-width: 560px; line-height: 1.65; }
+    .blog-body { background: var(--cream); padding: 80px 0 100px; }
+    .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items: start; }
+    .blog-article h2 { font-family: var(--font-h); font-size: 2.2rem; color: var(--navy); letter-spacing: .03em; margin: 2rem 0 .75rem; }
+    .blog-article h2:first-child { margin-top: 0; }
+    .blog-article p { color: var(--gray); font-size: .97rem; line-height: 1.8; margin-bottom: 1.2rem; }
+    .blog-article ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
+    .blog-article ul li { display: flex; align-items: flex-start; gap: .75rem; color: var(--gray); font-size: .95rem; line-height: 1.6; }
+    .blog-article ul li::before { content: '▸'; color: var(--orange); flex-shrink: 0; margin-top: .1rem; }
+    .blog-highlight { background: var(--white); border-left: 4px solid var(--navy-mid); border-radius: 0 var(--r-md) var(--r-md) 0; padding: 1.4rem 1.8rem; margin: 2rem 0; font-size: 1.05rem; color: var(--navy); font-weight: 600; line-height: 1.6; box-shadow: var(--shadow-sm); }
+    .blog-img { width: 100%; border-radius: var(--r-xl); margin: 2rem 0; aspect-ratio: 16/9; object-fit: cover; box-shadow: var(--shadow-md); }
+    .blog-sidebar { position: sticky; top: calc(var(--nav-h) + 2rem); display: flex; flex-direction: column; gap: 1.5rem; }
+    .sidebar-card { background: var(--white); border-radius: var(--r-xl); padding: 1.8rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,.05); }
+    .sidebar-card h3 { font-family: var(--font-h); font-size: 1.4rem; color: var(--navy); letter-spacing: .03em; margin-bottom: 1rem; }
+    .sidebar-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+    .sidebar-list li { display: flex; align-items: center; gap: .6rem; font-size: .88rem; color: var(--gray); }
+    .sidebar-list li span.icon { font-size: 1rem; }
+    .sidebar-cta { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); border-radius: var(--r-xl); padding: 2rem 1.8rem; text-align: center; color: var(--white); }
+    .sidebar-cta p { font-size: .9rem; opacity: .9; line-height: 1.6; margin-bottom: 1.2rem; }
+    .sidebar-cta .btn-primary { box-shadow: none; width: 100%; justify-content: center; }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag { background: var(--cream); color: var(--navy); font-size: .72rem; font-weight: 700; letter-spacing: .06em; padding: .3rem .8rem; border-radius: var(--r-full); text-transform: uppercase; }
+    @media (max-width: 900px) { .blog-layout { grid-template-columns: 1fr; } .blog-sidebar { position: static; } }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#servicios">Servicios</a></li>
+      <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="index.html#testimonios">Testimonios</a></li>
+      <li><a href="index.html#galeria">Galería</a></li>
+      <li><a href="index.html#contacto" class="btn-nav">¡Contáctame!</a></li>
+    </ul>
+    <button class="dark-toggle" id="darkToggle"><span class="toggle-icon">🌙</span><span class="toggle-txt">Oscuro</span></button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <section class="blog-hero">
+    <div class="blog-hero-bg"></div>
+    <div class="blog-hero-overlay"></div>
+    <div class="blog-hero-content">
+      <a href="index.html#servicios" class="blog-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Volver a servicios
+      </a>
+      <div class="blog-hero-tag">🧘 Disciplina 02</div>
+      <h1 class="blog-hero">Yoga</h1>
+      <p class="blog-hero-sub">Un viaje hacia el equilibrio interior. Descubre cómo el yoga conecta cuerpo, mente y espíritu para transformar tu vida desde adentro.</p>
+    </div>
+  </section>
+
+  <section class="blog-body">
+    <div class="container blog-layout">
+      <article class="blog-article">
+
+        <h2>¿Qué es el Yoga?</h2>
+        <p>El Yoga es una práctica milenaria originada en la India que integra posturas físicas (asanas), técnicas de respiración (pranayama) y meditación para lograr un estado de equilibrio entre el cuerpo y la mente. Lejos de ser solo flexibilidad, el yoga es un sistema completo de bienestar.</p>
+        <p>En las clases con William, el yoga se aborda desde una perspectiva funcional y accesible: sin dogmas, sin competencia, con atención plena a lo que tu cuerpo necesita hoy.</p>
+
+        <div class="blog-highlight">
+          "El yoga no se trata de tocar los pies con las manos. Se trata de lo que aprendes en el camino hacia abajo."
+        </div>
+
+        <img src="/Multimedia/blogyoga.jpg" alt="Clase de Yoga" class="blog-img" />
+
+        <h2>Beneficios físicos</h2>
+        <ul>
+          <li>Aumenta la flexibilidad y el rango de movimiento articular</li>
+          <li>Fortalece músculo profundo y superficial sin impacto</li>
+          <li>Mejora la postura y alinea la columna vertebral</li>
+          <li>Reduce el dolor crónico de espalda, cuello y articulaciones</li>
+          <li>Mejora el equilibrio, la coordinación y la propiocepción</li>
+          <li>Optimiza la respiración y la capacidad pulmonar</li>
+        </ul>
+
+        <h2>Beneficios mentales</h2>
+        <p>La práctica regular de yoga activa el sistema nervioso parasimpático — el estado de "descanso y digestión" — reduciendo la respuesta al estrés. La combinación de movimiento consciente y respiración es una de las herramientas más poderosas para regular el sistema nervioso.</p>
+        <ul>
+          <li>Reduce el cortisol y los marcadores de estrés crónico</li>
+          <li>Mejora la calidad del sueño y los ciclos circadianos</li>
+          <li>Aumenta la concentración, la claridad mental y la memoria</li>
+          <li>Desarrolla la conciencia emocional y la resiliencia</li>
+          <li>Alivia síntomas de ansiedad y depresión</li>
+        </ul>
+
+        <h2>Estilos que practicamos</h2>
+        <ul>
+          <li><strong>Hatha Yoga:</strong> base tradicional, posturas sostenidas y respiración consciente</li>
+          <li><strong>Vinyasa:</strong> flujo dinámico que sincroniza movimiento y respiración</li>
+          <li><strong>Yin Yoga:</strong> posturas pasivas de larga duración para tejido conectivo profundo</li>
+          <li><strong>Yoga Restaurativo:</strong> relajación profunda con accesorios y soporte</li>
+        </ul>
+
+        <h2>¿Es para mí si no soy flexible?</h2>
+        <p>La pregunta más frecuente — y la respuesta es sí, rotundamente. La inflexibilidad no es un obstáculo para el yoga; es precisamente la razón para practicarlo. William adapta cada postura a tu rango de movimiento actual y te guía en una progresión segura y efectiva.</p>
+
+        <div class="blog-highlight">
+          Cada cuerpo es diferente. En estas clases no existe la comparación — solo tu propio viaje, a tu propio ritmo.
+        </div>
+
+      </article>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-card">
+          <h3>Info de la clase</h3>
+          <ul class="sidebar-list">
+            <li><span class="icon">⏱️</span> Duración: 60 minutos</li>
+            <li><span class="icon">📊</span> Nivel: Todos los niveles</li>
+            <li><span class="icon">🌿</span> Intensidad: Suave – Media</li>
+            <li><span class="icon">📍</span> Presencial y Online</li>
+            <li><span class="icon">🧘</span> Traer mat (o se presta)</li>
+            <li><span class="icon">👕</span> Ropa cómoda y elástica</li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-card">
+          <h3>Etiquetas</h3>
+          <div class="tags-wrap">
+            <span class="tag">Flexibilidad</span>
+            <span class="tag">Mindfulness</span>
+            <span class="tag">Equilibrio</span>
+            <span class="tag">Respiración</span>
+            <span class="tag">Meditación</span>
+            <span class="tag">Bienestar</span>
+          </div>
+        </div>
+        <div class="sidebar-cta">
+          <p>Primera clase gratis. Ven a descubrir lo que el yoga puede hacer por ti.</p>
+          <a href="https://wa.me/573103660562?text=Hola%20William!%20Quiero%20reservar%20una%20clase%20de%20Yoga." target="_blank" class="btn-primary">
+            <span>Reservar por WhatsApp</span>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-bottom" style="justify-content:center;">
+      <p>© 2026 Elemento Sinergia · William Velásquez. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+    <script>
+    // Navbar scroll
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+    // Hamburger
+    var hamburger = document.getElementById('hamburger');
+    var navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Dark mode
+    (function () {
+      var btn  = document.getElementById('darkToggle');
+      var html = document.documentElement;
+      function aplicarTema(dark) {
+        if (dark) {
+          html.setAttribute('data-theme', 'dark');
+          btn.querySelector('.toggle-icon').textContent = '☀️';
+          btn.querySelector('.toggle-txt').textContent  = 'Claro';
+        } else {
+          html.removeAttribute('data-theme');
+          btn.querySelector('.toggle-icon').textContent = '🌙';
+          btn.querySelector('.toggle-txt').textContent  = 'Oscuro';
+        }
+      }
+      btn.addEventListener('click', function () {
+        var esDark = html.getAttribute('data-theme') === 'dark';
+        localStorage.setItem('willflow-theme', esDark ? 'light' : 'dark');
+        aplicarTema(!esDark);
+      });
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('willflow-theme')) aplicarTema(e.matches);
+      });
+      var g = localStorage.getItem('willflow-theme');
+      aplicarTema(g ? g === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rumba & Baile | Elemento Sinergia</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Willstyle.css" />
+  <style>
+    /* ── BLOG HERO ── */
+    .blog-hero {
+      margin-top: var(--nav-h);
+      min-height: 55vh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .blog-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('/Multimedia/blogrumba.jpg') center/cover no-repeat;
+    }
+    .blog-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,31,66,.92) 0%, rgba(11,31,66,.5) 50%, rgba(0,0,0,.2) 100%);
+    }
+    .blog-hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 4rem 5% 3.5rem;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .blog-back {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      font-size: .85rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      margin-bottom: 1.5rem;
+      transition: color .25s;
+    }
+    .blog-back:hover { color: var(--orange); }
+    .blog-back svg { width: 16px; height: 16px; }
+    .blog-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--orange);
+      color: var(--white);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .35rem 1rem;
+      border-radius: var(--r-full);
+      margin-bottom: 1rem;
+    }
+    .blog-hero h1 {
+      font-family: var(--font-h);
+      font-size: clamp(3rem, 7vw, 6rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: .03em;
+      margin-bottom: 1rem;
+    }
+    .blog-hero-sub {
+      color: rgba(255,255,255,.8);
+      font-size: 1.05rem;
+      max-width: 560px;
+      line-height: 1.65;
+    }
+
+    /* ── BLOG BODY ── */
+    .blog-body {
+      background: var(--cream);
+      padding: 80px 0 100px;
+    }
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 4rem;
+      align-items: start;
+    }
+    /* Artículo */
+    .blog-article h2 {
+      font-family: var(--font-h);
+      font-size: 2.2rem;
+      color: var(--navy);
+      letter-spacing: .03em;
+      margin: 2rem 0 .75rem;
+    }
+    .blog-article h2:first-child { margin-top: 0; }
+    .blog-article p {
+      color: var(--gray);
+      font-size: .97rem;
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .blog-article ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      margin-bottom: 1.5rem;
+    }
+    .blog-article ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      color: var(--gray);
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+    .blog-article ul li::before {
+      content: '▸';
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: .1rem;
+    }
+    .blog-highlight {
+      background: var(--white);
+      border-left: 4px solid var(--orange);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      padding: 1.4rem 1.8rem;
+      margin: 2rem 0;
+      font-size: 1.05rem;
+      color: var(--navy);
+      font-weight: 600;
+      line-height: 1.6;
+      box-shadow: var(--shadow-sm);
+    }
+    .blog-img {
+      width: 100%;
+      border-radius: var(--r-xl);
+      margin: 2rem 0;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      box-shadow: var(--shadow-md);
+    }
+    /* Sidebar */
+    .blog-sidebar {
+      position: sticky;
+      top: calc(var(--nav-h) + 2rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .sidebar-card {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 1.8rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,.05);
+    }
+    .sidebar-card h3 {
+      font-family: var(--font-h);
+      font-size: 1.4rem;
+      color: var(--navy);
+      letter-spacing: .03em;
+      margin-bottom: 1rem;
+    }
+    .sidebar-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .55rem;
+    }
+    .sidebar-list li {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-size: .88rem;
+      color: var(--gray);
+    }
+    .sidebar-list li span.icon { font-size: 1rem; }
+    .sidebar-cta {
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dk) 100%);
+      border-radius: var(--r-xl);
+      padding: 2rem 1.8rem;
+      text-align: center;
+      color: var(--white);
+    }
+    .sidebar-cta p {
+      font-size: .9rem;
+      opacity: .9;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+    .sidebar-cta .btn-primary {
+      box-shadow: none;
+      width: 100%;
+      justify-content: center;
+      background: var(--white);
+      color: var(--orange);
+    }
+    .sidebar-cta .btn-primary:hover { background: var(--orange-lt); }
+    .tags-wrap { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      background: var(--cream);
+      color: var(--navy);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      padding: .3rem .8rem;
+      border-radius: var(--r-full);
+      text-transform: uppercase;
+    }
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; }
+      .blog-sidebar { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#servicios">Servicios</a></li>
+      <li><a href="index.html#sobre-mi">Sobre mí</a></li>
+      <li><a href="index.html#testimonios">Testimonios</a></li>
+      <li><a href="index.html#galeria">Galería</a></li>
+      <li><a href="index.html#contacto" class="btn-nav">¡Contáctame!</a></li>
+    </ul>
+    <button class="dark-toggle" id="darkToggle" aria-label="Cambiar modo">
+      <span class="toggle-icon">🌙</span>
+      <span class="toggle-txt">Oscuro</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="blog-hero">
+    <div class="blog-hero-bg"></div>
+    <div class="blog-hero-overlay"></div>
+    <div class="blog-hero-content">
+      <a href="index.html#servicios" class="blog-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Volver a servicios
+      </a>
+      <div class="blog-hero-tag">🕺 Disciplina 01</div>
+      <h1 class="blog-hero">Rumba &amp; Baile</h1>
+      <p class="blog-hero-sub">Descubre cómo el baile latino puede transformar tu cuerpo, elevar tu estado de ánimo y hacerte vivir con más energía cada día.</p>
+    </div>
+  </section>
+
+  <!-- CONTENIDO -->
+  <section class="blog-body">
+    <div class="container blog-layout">
+
+      <article class="blog-article">
+
+        <h2>¿Qué es la Rumba fitness?</h2>
+        <p>La Rumba fitness es una disciplina que combina los ritmos vibrantes de la música latina — salsa, merengue, cumbia, reggaeton — con movimientos aeróbicos diseñados para trabajar todo el cuerpo. A diferencia de otras rutinas de cardio, en la Rumba el ejercicio se disfraza de celebración.</p>
+        <p>Cada clase es una experiencia sensorial completa: música que te mueve por dentro, coreografías accesibles para todos los niveles y un ambiente de comunidad que te hace querer volver cada semana.</p>
+
+        <div class="blog-highlight">
+          "En 45 minutos de Rumba puedes quemar entre 400 y 600 calorías sin sentir que estás haciendo ejercicio — porque simplemente estás bailando."
+        </div>
+
+        <img src="/Multimedia/blogrumba.jpg" alt="Clase de Rumba" class="blog-img" />
+
+        <h2>Beneficios físicos</h2>
+        <ul>
+          <li>Mejora la resistencia cardiovascular y pulmonar</li>
+          <li>Tonifica piernas, glúteos, abdomen y brazos simultáneamente</li>
+          <li>Aumenta la coordinación motora y el equilibrio</li>
+          <li>Quema grasa de forma eficiente y sostenida</li>
+          <li>Mejora la postura y la conciencia corporal</li>
+          <li>Fortalece articulaciones con impacto moderado</li>
+        </ul>
+
+        <h2>Beneficios mentales y emocionales</h2>
+        <p>El baile libera endorfinas, dopamina y serotonina — los neurotransmisores del bienestar. Practicar Rumba regularmente reduce los niveles de cortisol (hormona del estrés) y mejora notablemente el estado de ánimo. Estudios han demostrado que bailar reduce síntomas de ansiedad y depresión de forma comparable a la meditación.</p>
+        <ul>
+          <li>Reduce el estrés y la ansiedad de forma inmediata</li>
+          <li>Aumenta la confianza y la autoestima</li>
+          <li>Estimula la memoria y las funciones cognitivas</li>
+          <li>Fomenta la conexión social y el sentido de comunidad</li>
+        </ul>
+
+        <h2>¿Para quién es la Rumba?</h2>
+        <p>Para absolutamente todos. No necesitas saber bailar, no necesitas tener ritmo previo, no necesitas estar en forma. Las clases de William están diseñadas para recibir a principiantes con los brazos abiertos y desafiar a los más avanzados con coreografías progresivas.</p>
+        <p>Desde los 15 hasta los 70 años, la Rumba se adapta a tu nivel, a tu cuerpo y a tu energía del día.</p>
+
+        <h2>¿Qué esperar en tu primera clase?</h2>
+        <ul>
+          <li>Calentamiento progresivo con pasos básicos de ritmos latinos</li>
+          <li>Bloques de coreografía simples que se van construyendo</li>
+          <li>Sección de cardio intenso con los ritmos más energéticos</li>
+          <li>Enfriamiento con stretching y movimientos suaves</li>
+          <li>Un ambiente sin juicios donde equivocarse hace parte de la diversión</li>
+        </ul>
+
+        <div class="blog-highlight">
+          La primera clase siempre es gratis. Ven con ropa cómoda, tenis de suela blanda y muchas ganas de mover el cuerpo.
+        </div>
+
+      </article>
+
+      <!-- SIDEBAR -->
+      <aside class="blog-sidebar">
+
+        <div class="sidebar-card">
+          <h3>Info de la clase</h3>
+          <ul class="sidebar-list">
+            <li><span class="icon">⏱️</span> Duración: 60 minutos</li>
+            <li><span class="icon">📊</span> Nivel: Todos los niveles</li>
+            <li><span class="icon">🔥</span> Intensidad: Media – Alta</li>
+            <li><span class="icon">📍</span> Presencial y Online</li>
+            <li><span class="icon">👟</span> Tenis de suela blanda</li>
+            <li><span class="icon">💧</span> Llevar agua</li>
+          </ul>
+        </div>
+
+     
+
+        <div class="sidebar-card">
+          <h3>Etiquetas</h3>
+          <div class="tags-wrap">
+            <span class="tag">Cardio</span>
+            <span class="tag">Coordinación</span>
+            <span class="tag">Diversión</span>
+            <span class="tag">Baile</span>
+            <span class="tag">Ritmo</span>
+            <span class="tag">Comunidad</span>
+          </div>
+        </div>
+
+        <div class="sidebar-cta">
+          <p>¿Listo para vivir la experiencia? Tu primera clase es completamente gratis.</p>
+          <a href="https://wa.me/573103660562?text=Hola%20William!%20Quiero%20reservar%20una%20clase%20de%20Rumba." target="_blank" class="btn-primary">
+            <span>Reservar por WhatsApp</span>
+          </a>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-bottom" style="justify-content:center;">
+      <p>© 2026 Elemento Sinergia · William Velásquez. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+    <script>
+    // Navbar scroll
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+
+    // Hamburger
+    var hamburger = document.getElementById('hamburger');
+    var navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Dark mode
+    (function () {
+      var btn  = document.getElementById('darkToggle');
+      var html = document.documentElement;
+      function aplicarTema(dark) {
+        if (dark) {
+          html.setAttribute('data-theme', 'dark');
+          btn.querySelector('.toggle-icon').textContent = '☀️';
+          btn.querySelector('.toggle-txt').textContent  = 'Claro';
+        } else {
+          html.removeAttribute('data-theme');
+          btn.querySelector('.toggle-icon').textContent = '🌙';
+          btn.querySelector('.toggle-txt').textContent  = 'Oscuro';
+        }
+      }
+      btn.addEventListener('click', function () {
+        var esDark = html.getAttribute('data-theme') === 'dark';
+        localStorage.setItem('willflow-theme', esDark ? 'light' : 'dark');
+        aplicarTema(!esDark);
+      });
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('willflow-theme')) aplicarTema(e.matches);
+      });
+      var g = localStorage.getItem('willflow-theme');
+      aplicarTema(g ? g === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches);
+    })();
+  </script>
+</body>
+</html>

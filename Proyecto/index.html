@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elemento Sinergia | William Velásquez</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <meta name="description" content="Clases de Rumba, Yoga, Pilates MAT, Masoterapia y Stretching con William Velásquez. Transforma tu cuerpo y tu mente." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Willstyle.css" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#F26419" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Sinergia" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+<body>
+
+  <div id="preloader">
+    <div class="pre-inner">
+      <div class="pre-logo">
+        <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="pre-logo-img" />
+      </div>
+      <div class="pre-bar"><div class="pre-bar-fill"></div></div>
+      <p class="pre-txt">Cargando tu experiencia...</p>
+    </div>
+  </div>
+
+  <nav id="navbar">
+    <a href="#inicio" class="nav-logo">
+      <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto" class="btn-nav">¡Contáctame!</a></li>
+    </ul>
+    <button class="dark-toggle" id="darkToggle" aria-label="Cambiar a modo oscuro">
+      <span class="toggle-icon">🌙</span>
+      <span class="toggle-txt">Oscuro</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <section id="inicio" class="hero">
+    <div class="hero-bg-wrap">
+      <div class="hero-col col-left"></div>
+      <div class="hero-col col-right"></div>
+    </div>
+    <div class="particles">
+      <span class="p p1"></span><span class="p p2"></span>
+      <span class="p p3"></span><span class="p p4"></span>
+      <span class="p p5"></span>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Rumba · Yoga · Pilates MAT · Masoterapia · Stretching
+      </div>
+      <h1 class="hero-title">
+        <span class="line line1">Tu cuerpo</span>
+        <span class="line line2 accent">tiene ritmo.</span>
+        <span class="line line3">Descúbrelo.</span>
+      </h1>
+      <p class="hero-sub">
+        Soy <strong>William Velásquez</strong> y llevo más de 15 años
+        ayudando a personas a moverse mejor, sentirse bien y vivir con energía. Mi pasion no es solo enseñar una tecnica,
+        sino ayudar a cada persona a redescubrir su propio potencial. Me apasiona ver como el cuerpo se transforma a
+        traves de la sinergia entre la disciplina y el disfrute, creando un habitat donde la energia fluye y la salud
+        se convierte en un estilo de vida
+      </p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">
+          <span>Contáctame ahora</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#servicios" class="btn-ghost">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><strong data-count="100" data-prefix="+" data-duration="2200">+100</strong><span>Estudiantes</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><strong data-count="15" data-suffix="+" data-duration="1800">15+</strong><span>Años de exp.</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><strong data-count="5" data-duration="1400">5</strong><span>Disciplinas</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span></span>Desliza
+    </div>
+  </section>
+
+  <section id="servicios" class="section-servicios">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Lo que ofrezco</p>
+        <h2 class="section-title">5 caminos hacia<br><span class="accent">tu mejor versión</span></h2>
+        <p class="section-sub">Cada disciplina está diseñada para complementarse. Elige una o combínalas todas.</p>
+      </div>
+      <div class="services-grid-wrap">
+        <div class="services-grid" id="servicesTrack">
+          <a href="blog-rumba.html" class="svc-card" data-color="orange">
+          <span class="svc-brillo"></span>
+            <div class="svc-num">01</div>
+            <h3>Rumba &amp; Baile</h3>
+            <p>Ritmos latinos que liberan energía, mejoran la coordinación y hacen que el ejercicio se sienta como una fiesta.</p>
+            <div class="svc-tags"><span>Cardio</span><span>Coordinación</span><span>Diversión</span></div>
+          <div class="svc-hover-panel"><span class="svc-hover-txt">Ver clases de Rumba</span><span class="svc-hover-arrow">→</span></div>
+          </a>
+          <a href="blog-yoga.html" class="svc-card" data-color="navy">
+          <span class="svc-brillo"></span>
+            <div class="svc-num">02</div>
+            <h3>Yoga</h3>
+            <p>Conecta mente, cuerpo y espíritu. Sesiones guiadas para todos los niveles que mejoran la flexibilidad y reducen el estrés.</p>
+            <div class="svc-tags"><span>Flexibilidad</span><span>Mindfulness</span><span>Equilibrio</span></div>
+          <div class="svc-hover-panel"><span class="svc-hover-txt">Ver clases de Yoga</span><span class="svc-hover-arrow">→</span></div>
+          </a>
+          <a href="blog-pilates.html" class="svc-card" data-color="orange">
+          <span class="svc-brillo"></span>
+            <div class="svc-num">03</div>
+            <h3>Pilates MAT</h3>
+            <p>Fortalece el core, corrige la postura y previene lesiones. Trabajo profundo que transforma tu base muscular.</p>
+            <div class="svc-tags"><span>Core</span><span>Postura</span><span>Fuerza</span></div>
+          <div class="svc-hover-panel"><span class="svc-hover-txt">Ver clases de Pilates</span><span class="svc-hover-arrow">→</span></div>
+          </a>
+          <a href="blog-masoterapia.html" class="svc-card" data-color="navy">
+          <span class="svc-brillo"></span>
+            <div class="svc-num">04</div>
+            <h3>Masoterapia</h3>
+            <p>Técnicas profesionales y alternativas de masaje deportivo-terapéutico para recuperar músculos, aliviar tensiones y acelerar la recuperación.</p>
+            <div class="svc-tags"><span>Recuperación</span><span>Relajación</span><span>Terapia</span></div>
+          <div class="svc-hover-panel"><span class="svc-hover-txt">Ver sesiones</span><span class="svc-hover-arrow">→</span></div>
+          </a>
+          <a href="blog-stretching.html" class="svc-card svc-wide" data-color="gradient">
+          <span class="svc-brillo"></span>
+            <div class="svc-num">05</div>
+            <h3>Stretching</h3>
+            <p>Rutinas de estiramiento progresivo que aumentan el rango de movimiento, reducen el dolor muscular y mejoran la recuperación post-entrenamiento.</p>
+            <div class="svc-tags"><span>Movilidad</span><span>Prevención</span><span>Recuperación</span><span>Flexibilidad</span></div>
+          <div class="svc-hover-panel"><span class="svc-hover-txt">Ver clases de Stretching</span><span class="svc-hover-arrow">→</span></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre-mi" class="section-sobre">
+    <div class="container sobre-grid">
+      <div class="sobre-visual">
+        <div class="sobre-img-wrap">
+          <div class="sobre-img-bg"></div>
+          <div class="sobre-badge-float">
+            <span class="badge-num">15+</span>
+            <span class="badge-txt">Años<br>de experiencia</span>
+          </div>
+        </div>
+        <div class="sobre-deco-ring"></div>
+      </div>
+      <div class="sobre-text">
+        <p class="eyebrow">Sobre mí</p>
+        <h2 class="section-title">Soy <span class="accent">William Velásquez</span></h2>
+        <p class="sobre-p">
+          Instructor certificado en Rumba, Yoga, Pilates MAT y Masoterapia con más de
+          <strong>15 años de experiencia</strong> transformando vidas a través del movimiento.
+          Mi filosofía es simple: <em>el cuerpo que cuidas hoy, es el que te lleva lejos mañana.</em>
+        </p>
+        <p class="sobre-p">
+          Creo en clases personalizadas, ambiente sin juicios y resultados reales.
+          No importa si nunca has bailado o si llevas años con dolor de espalda —
+          aquí encontrarás tu ritmo.
+        </p>
+        <div class="sobre-logros">
+          <div class="logro">
+            <span class="logro-n" data-count="100" data-prefix="+" data-duration="2200">+100</span>
+            <span class="logro-l">Estudiantes formados</span>
+          </div>
+          <div class="logro">
+            <span class="logro-n" data-count="50" data-prefix="+" data-duration="1600">+50</span>
+            <span class="logro-l">Rutinas diseñadas</span>
+          </div>
+          <div class="logro">
+            <span class="logro-n" data-count="100" data-suffix="%" data-duration="2000">100%</span>
+            <span class="logro-l">Pasión garantizada</span>
+          </div>
+        </div>
+        <a href="#contacto" class="btn-primary">Contáctame</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonios" class="section-testimonios">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Lo que dicen</p>
+        <h2 class="section-title">Resultados <span class="accent">reales</span></h2>
+      </div>
+      <div class="testi-slider" id="testiSlider">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Llevaba 3 años con dolor lumbar crónico. Después de 2 meses con Will combinando Pilates MAT y stretching, prácticamente desapareció. No lo podía creer."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#F26419;">MR</div>
+            <div><strong>María Rodríguez</strong><span>Pilates MAT &amp; Stretching · 6 meses</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Vine buscando bajar de peso y terminé enamorándome de la rumba. Bajé 8 kilos en 4 meses pero lo mejor fue la confianza que gané. Will es increíble como profe."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#0D2149;">CG</div>
+            <div><strong>Carlos Gómez</strong><span>Rumba &amp; Baile · 4 meses</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"El yoga con Will es diferente. Explica muy bien, adapta cada pose y crea un ambiente muy tranquilo. Llevo un año y es lo mejor que he hecho por mi salud mental."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#2a7a4f;">LP</div>
+            <div><strong>Laura Peña</strong><span>Yoga · 1 año</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Soy deportista y usaba las sesiones de masoterapia solo para recuperación. Ahora añadí stretching y el cambio en mi rendimiento fue enorme. 100% recomendado."</p>
+          <div class="testi-author">
+            <div class="testi-avatar" style="background:#8B4513;">JM</div>
+            <div><strong>Julián Morales</strong><span>Masoterapia &amp; Stretching · 8 meses</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </section>
+
+
+
+  <section id="galeria" class="section-galeria">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">En acción</p>
+        <h2 class="section-title">Galería <span class="accent">Elemento Sinergia</span></h2>
+        <p class="section-sub">Momentos reales de clases, sesiones y transformaciones. ¡Así se vive Elemento Sinergia!</p>
+      </div>
+    </div>
+    <div class="galeria-wrap">
+      <button class="gal-arrow gal-prev" id="galPrev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="galeria-track-outer" id="galeriaOuter">
+        <div class="galeria-track" id="galeriaTrack">
+          <div class="gal-item">
+            <div class="gal-media"><img src="https://images.unsplash.com/photo-1524594081293-190a2fe0baae?w=800&q=80" alt="Clase de Rumba" loading="lazy"/></div>
+            <div class="gal-info"><span class="gal-badge">🕺 Rumba</span><p>Clase grupal de Rumba — ¡La energía que se siente!</p></div>
+          </div>
+          <div class="gal-item gal-video-item">
+            <div class="gal-media">
+              <video src="video/clase-yoga.mp4" poster="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80" preload="none"></video>
+              <button class="gal-play-btn" onclick="reproducirVideo(this)" aria-label="Reproducir">&#9654;</button>
+            </div>
+            <div class="gal-info"><span class="gal-badge">🧘 Yoga</span><p>Sesión de Yoga matutino — Paz y concentración total.</p></div>
+          </div>
+          <div class="gal-item">
+            <div class="gal-media"><img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=800&q=80" alt="Pilates MAT" loading="lazy"/></div>
+            <div class="gal-info"><span class="gal-badge">💪 Pilates MAT</span><p>Pilates MAT de fortalecimiento — Postura y core a fondo.</p></div>
+          </div>
+          <div class="gal-item gal-video-item">
+            <div class="gal-media">
+              <video src="video/clase-pilates.mp4" poster="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800&q=80" preload="none"></video>
+              <button class="gal-play-btn" onclick="reproducirVideo(this)" aria-label="Reproducir">&#9654;</button>
+            </div>
+            <div class="gal-info"><span class="gal-badge">💪 Pilates MAT</span><p>Rutina de Pilates MAT avanzado — ¡Mira la transformación!</p></div>
+          </div>
+          <div class="gal-item">
+            <div class="gal-media"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=800&q=80" alt="Masoterapia" loading="lazy"/></div>
+            <div class="gal-info"><span class="gal-badge">🤲 Masoterapia</span><p>Sesión de recuperación muscular — Cuerpo y mente al 100%.</p></div>
+          </div>
+          <div class="gal-item gal-video-item">
+            <div class="gal-media">
+              <video src="video/clase-rumba.mp4" poster="https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&q=80" preload="none"></video>
+              <button class="gal-play-btn" onclick="reproducirVideo(this)" aria-label="Reproducir">&#9654;</button>
+            </div>
+            <div class="gal-info"><span class="gal-badge">🕺 Rumba</span><p>Rumba en vivo — Ritmo, sudor y mucha alegría.</p></div>
+          </div>
+          <div class="gal-item">
+            <div class="gal-media"><img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=800&q=80" alt="Stretching" loading="lazy"/></div>
+            <div class="gal-info"><span class="gal-badge">🤸 Stretching</span><p>Stretching profundo — Flexibilidad que sorprende.</p></div>
+          </div>
+          <div class="gal-item gal-video-item">
+            <div class="gal-media">
+              <video src="video/clase-stretching.mp4" poster="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=800&q=80" preload="none"></video>
+              <button class="gal-play-btn" onclick="reproducirVideo(this)" aria-label="Reproducir">&#9654;</button>
+            </div>
+            <div class="gal-info"><span class="gal-badge">🤸 Stretching</span><p>Rutina completa de Stretching — De principiante a avanzado.</p></div>
+          </div>
+        </div>
+      </div>
+      <button class="gal-arrow gal-next" id="galNext" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="gal-dots" id="galDots"></div>
+    <p class="gal-counter"><span id="galCurrent">1</span> / <span id="galTotal">8</span></p>
+  </section>
+
+  <section class="section-horarios">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Organízate</p>
+        <h2 class="section-title">Horarios <span class="accent">disponibles</span></h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.55)">
+          Haz clic en cualquier horario disponible para reservar tu lugar por WhatsApp.
+        </p>
+      </div>
+      <div class="hor-toolbar">
+        <div class="hor-nav">
+          <button class="hor-nav-btn" id="horPrev" aria-label="Semana anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="hor-week-label" id="horWeekLabel">Cargando...</div>
+          <button class="hor-nav-btn" id="horNext" aria-label="Semana siguiente">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+        <div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;">
+          <button class="hor-today-btn" id="horToday">Esta semana</button>
+          <div class="hor-legend">
+            <div class="hor-legend-item"><span class="hor-legend-dot avail"></span>Disponible</div>
+            <div class="hor-legend-item"><span class="hor-legend-dot off"></span>No disponible</div>
+          </div>
+        </div>
+      </div>
+      <div class="hor-cal-wrap">
+        <div class="hor-cal" id="horCal">
+          <div class="hor-loading">
+            <div class="hor-spinner"></div><br>Cargando horarios...
+          </div>
+        </div>
+      </div>
+      <p class="horarios-nota">📍 Clases presenciales en Medellín · 💻 También disponibles online vía Zoom</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#inicio" class="nav-logo footer-logo">
+          <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="footer-logo-img" />
+        </a>
+        <p class="footer-desc">
+          Movimiento, bienestar y ritmo con <strong>William Velásquez</strong>.
+          Medellín, Colombia 🇨🇴
+        </p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Rumba &amp; Baile</a></li>
+          <li><a href="#servicios">Yoga</a></li>
+          <li><a href="#servicios">Pilates MAT</a></li>
+          <li><a href="#servicios">Masoterapia</a></li>
+          <li><a href="#servicios">Stretching</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col" id="contacto">
+        <h4>Contacto</h4>
+        <ul class="footer-contact">
+          <li>📧 will@elementosinergia.com</li>
+          <li>📱 +57 310 366 0562</li>
+          <li>📍 Medellín, Colombia</li>
+          <li>💻 Clases online vía Zoom</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Elemento Sinergia · William Velásquez. Todos los derechos reservados.</p>
+      <p>Hecho con 🧡 y mucho ritmo.</p>
+      <a href="admin.html" class="admin-link" aria-label="Administrador">⚙</a>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/573103660562?text=Hola%20William!%20Quiero%20informacion%20sobre%20las%20clases%20de%20Elemento%20Sinergia."
+    class="wa-float" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.523 5.855L.057 23.428a.75.75 0 0 0 .914.914l5.663-1.453A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.497-5.207-1.367l-.371-.214-3.862.991.999-3.77-.228-.381A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+    </svg>
+    <span class="wa-float-tooltip">Chatea con Will</span>
+  </a>
+
+  <div class="toast" id="toast">
+    <span class="toast-icon">✅</span>
+    <span id="toastMsg">¡Mensaje enviado!</span>
+  </div>
+
+  <script src="Will.js"></script>
+
+  <script>
+    setTimeout(function () {
+      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+      function animar(el) {
+        var destino  = parseFloat(el.getAttribute('data-count'));
+        var duracion = parseInt(el.getAttribute('data-duration') || '2000');
+        var prefijo  = el.getAttribute('data-prefix') || '';
+        var sufijo   = el.getAttribute('data-suffix') || '';
+        var inicio   = performance.now();
+        function tick(now) {
+          var t = Math.min((now - inicio) / duracion, 1);
+          el.textContent = prefijo + Math.floor(destino * easeOut(t)) + sufijo;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = prefijo + destino + sufijo;
+        }
+        requestAnimationFrame(tick);
+      }
+      function enPantalla(el) { var r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; }
+      var pendientes = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+      function revisar() {
+        pendientes = pendientes.filter(function (el) {
+          if (el.getAttribute('data-hecho')) return false;
+          if (enPantalla(el)) { el.setAttribute('data-hecho', '1'); animar(el); return false; }
+          return true;
+        });
+        if (!pendientes.length) window.removeEventListener('scroll', revisar);
+      }
+      revisar();
+      window.addEventListener('scroll', revisar, { passive: true });
+    }, 1200);
+  </script>
+
+  <!-- Popup seleccion servicio -->
+  <div id="svcPopupOverlay" style="display:none;position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem;">
+    <div style="background:#fff;border-radius:20px;padding:2rem;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3);">
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#0B1F42;margin-bottom:.2rem;letter-spacing:.03em;">Reserva tu clase</p>
+      <p id="svcPopupInfo" style="font-size:.82rem;color:#6B7280;font-weight:600;margin-bottom:1.2rem;"></p>
+
+      <!-- Paso 1: elegir clase -->
+      <div id="popupPaso1">
+        <p style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0B1F42;margin-bottom:.6rem;">Elige la clase</p>
+        <div id="svcBtns" style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem;"></div>
+      </div>
+
+      <!-- Paso 2: datos personales -->
+      <div id="popupPaso2" style="display:none;">
+        <p style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0B1F42;margin-bottom:.8rem;">Tus datos</p>
+        <div style="margin-bottom:.8rem;">
+          <label style="display:block;font-size:.72rem;font-weight:700;color:#0B1F42;margin-bottom:.35rem;letter-spacing:.06em;text-transform:uppercase;">Nombre completo</label>
+          <input id="popupNombre" type="text" placeholder="Ej: Juan García" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;font-family:Outfit,sans-serif;font-size:.9rem;color:#0B1F42;background:#F3F4F6;outline:none;" />
+        </div>
+        <div style="margin-bottom:1.2rem;">
+          <label style="display:block;font-size:.72rem;font-weight:700;color:#0B1F42;margin-bottom:.35rem;letter-spacing:.06em;text-transform:uppercase;">Dirección del domicilio</label>
+          <input id="popupDireccion" type="text" placeholder="Ej: Calle 50 #32-15, Laureles" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;font-family:Outfit,sans-serif;font-size:.9rem;color:#0B1F42;background:#F3F4F6;outline:none;" />
+        </div>
+        <p id="popupError" style="display:none;color:#dc2626;font-size:.78rem;font-weight:600;margin-bottom:.8rem;">Por favor completa todos los campos.</p>
+        <button id="popupConfirmar" style="width:100%;padding:.85rem;background:#F26419;color:#fff;border:none;border-radius:999px;font-family:Outfit,sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-bottom:.6rem;">Confirmar reserva →</button>
+        <button onclick="volverPaso1Svc()" style="width:100%;padding:.65rem;background:#F3F4F6;border:none;border-radius:999px;font-family:Outfit,sans-serif;font-weight:700;font-size:.82rem;color:#6B7280;cursor:pointer;">← Volver</button>
+      </div>
+
+      <button onclick="cerrarPopupSvc()" style="width:100%;padding:.7rem;background:#F3F4F6;border:none;border-radius:999px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.85rem;color:#6B7280;cursor:pointer;margin-top:.5rem;">Cancelar</button>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey:            "AIzaSyC_k8SIIMG9Qvn69AOcQ2rF3cUWfZySPFk",
+      authDomain:        "elemento-sinergia.firebaseapp.com",
+      projectId:         "elemento-sinergia",
+      storageBucket:     "elemento-sinergia.firebasestorage.app",
+      messagingSenderId: "782989236753",
+      appId:             "1:782989236753:web:e809a172257acc0139afb0"
+    };
+
+    const app = initializeApp(firebaseConfig, 'public');
+    const db  = getFirestore(app);
+
+    const HORAS   = ['06:00','07:00','08:00','09:00','10:00','11:00',
+                     '12:00','13:00','14:00','15:00','16:00','17:00',
+                     '18:00','19:00','20:00'];
+    const DIAS    = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+    const DIAS_L  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+    const MESES   = ['enero','febrero','marzo','abril','mayo','junio',
+                     'julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const MESES_S = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+
+    const SERVICIOS = [
+      { id:'Rumba',       label:'Rumba & Baile',  emo:'🕺' },
+      { id:'Yoga',        label:'Yoga',            emo:'🧘' },
+      { id:'Pilates',     label:'Pilates MAT',     emo:'💪' },
+      { id:'Masoterapia', label:'Masoterapia',     emo:'🤲' },
+      { id:'Stretching',  label:'Stretching',      emo:'🤸' }
+    ];
+
+    let weekOffset = 0;
+
+    function getWeekDates(offset) {
+      const today  = new Date();
+      const day    = today.getDay();
+      const monday = new Date(today);
+      monday.setDate(today.getDate() - day + 1 + offset * 7);
+      monday.setHours(0,0,0,0);
+      const days = [];
+      for (let i = 0; i < 7; i++) {
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+        days.push(d);
+      }
+      return days;
+    }
+
+    function dateKey(d, hora) {
+      const y   = d.getFullYear();
+      const m   = String(d.getMonth()+1).padStart(2,'0');
+      const day = String(d.getDate()).padStart(2,'0');
+      return y + '-' + m + '-' + day + '_' + hora;
+    }
+
+    function isPast(d, hora) {
+      const now = new Date();
+      const slotDate = new Date(d);
+      slotDate.setHours(parseInt(hora.split(':')[0]), 0, 0, 0);
+      return slotDate < now;
+    }
+
+    function isToday(d) {
+      const t = new Date();
+      return d.getDate()===t.getDate() && d.getMonth()===t.getMonth() && d.getFullYear()===t.getFullYear();
+    }
+
+    function buildWaLink(d, hora, servicio, modalidad) {
+      const dow   = DIAS_L[d.getDay()];
+      const fecha = dow + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()];
+      const msg   = 'Hola William! Quiero reservar la clase de ' + servicio + ' el ' + fecha + ' a las ' + hora + '. Modalidad: ' + modalidad + '.';
+      return 'https://wa.me/573103660562?text=' + encodeURIComponent(msg);
+    }
+
+    // Estado del popup
+    var popupEstado = { d: null, hora: null, modalidad: null, servicio: null, fecha: null };
+
+    window.cerrarPopupSvc = function() {
+      document.getElementById('svcPopupOverlay').style.display = 'none';
+      popupEstado = { d: null, hora: null, modalidad: null, servicio: null, fecha: null };
+    };
+
+    window.volverPaso1Svc = function() {
+      document.getElementById('popupPaso1').style.display = 'block';
+      document.getElementById('popupPaso2').style.display = 'none';
+      document.getElementById('popupError').style.display = 'none';
+    };
+
+    function abrirPopupSvc(d, hora, modalidad) {
+      const dow    = DIAS_L[d.getDay()];
+      const fecha  = dow + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()];
+      const modTxt = modalidad === 'Online' ? '💻 Online' : modalidad === 'Ambas' ? '📍💻 Presencial y Online' : '📍 Presencial';
+      document.getElementById('svcPopupInfo').textContent = hora + ' · ' + fecha + ' · ' + modTxt;
+
+      // Mostrar paso 1
+      document.getElementById('popupPaso1').style.display = 'block';
+      document.getElementById('popupPaso2').style.display = 'none';
+      document.getElementById('popupError').style.display = 'none';
+      document.getElementById('popupNombre').value = '';
+      document.getElementById('popupDireccion').value = '';
+
+      // Construir botones de servicios
+      const btns = document.getElementById('svcBtns');
+      btns.innerHTML = '';
+      SERVICIOS.forEach(function(svc) {
+        const btn = document.createElement('button');
+        btn.style.cssText = 'padding:.8rem .5rem;background:#FAF7F2;border:1.5px solid rgba(0,0,0,.08);border-radius:14px;font-family:Outfit,sans-serif;font-weight:700;font-size:.82rem;color:#0B1F42;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:all .2s;';
+        btn.innerHTML = '<span style="font-size:1.4rem;">' + svc.emo + '</span><span>' + svc.label + '</span>';
+        btn.addEventListener('mouseenter', function() { btn.style.background='#F26419'; btn.style.color='#fff'; btn.style.borderColor='#F26419'; });
+        btn.addEventListener('mouseleave', function() { btn.style.background='#FAF7F2'; btn.style.color='#0B1F42'; btn.style.borderColor='rgba(0,0,0,.08)'; });
+        btn.addEventListener('click', function() {
+          var mod = modalidad === 'Ambas' ? 'Presencial y Online' : modalidad;
+          popupEstado.d = d; popupEstado.hora = hora;
+          popupEstado.modalidad = mod; popupEstado.servicio = svc.id;
+          popupEstado.fecha = fecha;
+          // Ir al paso 2
+          document.getElementById('popupPaso1').style.display = 'none';
+          document.getElementById('popupPaso2').style.display = 'block';
+        });
+        btns.appendChild(btn);
+      });
+
+      document.getElementById('svcPopupOverlay').style.display = 'flex';
+    }
+
+    // Confirmar reserva con nombre y dirección
+    document.getElementById('popupConfirmar').addEventListener('click', async function() {
+      var nombre    = document.getElementById('popupNombre').value.trim();
+      var direccion = document.getElementById('popupDireccion').value.trim();
+      var errEl     = document.getElementById('popupError');
+
+      if (!nombre || !direccion) {
+        errEl.style.display = 'block';
+        return;
+      }
+      errEl.style.display = 'none';
+
+      var d         = popupEstado.d;
+      var hora      = popupEstado.hora;
+      var servicio  = popupEstado.servicio;
+      var mod       = popupEstado.modalidad;
+      var fecha     = popupEstado.fecha;
+      var slotK     = dateKey(d, hora);
+
+      // Construir mensaje WhatsApp con nombre y dirección
+      var msg = 'Hola William! Quiero reservar la clase de ' + servicio +
+                ' el ' + fecha + ' a las ' + hora + '.' +
+                '%0ANombre: ' + encodeURIComponent(nombre) +
+                '%0ADirección: ' + encodeURIComponent(direccion) +
+                '%0AModalidad: ' + mod;
+
+      window.open('https://wa.me/573103660562?text=' + msg, '_blank', 'noopener');
+      cerrarPopupSvc();
+
+      try {
+        await addDoc(collection(db, 'reservas'), {
+          servicio:   servicio,
+          hora:       hora,
+          fecha:      fecha,
+          fechaISO:   d.toISOString().split('T')[0],
+          modalidad:  mod,
+          nombre:     nombre,
+          direccion:  direccion,
+          slotKey:    slotK,
+          estado:     'pendiente',
+          creadoEn:   serverTimestamp()
+        });
+        await deleteDoc(doc(db, 'horarios', slotK));
+        renderPublicCal();
+      } catch(e) { console.log('Error en reserva:', e); }
+    });
+
+    document.getElementById('svcPopupOverlay').addEventListener('click', function(e) {
+      if (e.target === document.getElementById('svcPopupOverlay')) cerrarPopupSvc();
+    });
+
+    async function renderPublicCal() {
+      const cal = document.getElementById('horCal');
+      if (!cal) return;
+      cal.innerHTML = '<div class="hor-loading"><div class="hor-spinner"></div><br>Cargando horarios...</div>';
+
+      const days = getWeekDates(weekOffset);
+      const d0 = days[0], d6 = days[6];
+      document.getElementById('horWeekLabel').textContent =
+        d0.getDate() + ' ' + MESES_S[d0.getMonth()] + ' - ' + d6.getDate() + ' ' + MESES_S[d6.getMonth()] + ' ' + d6.getFullYear();
+
+      const allKeys = [];
+      days.forEach(function(d) { HORAS.forEach(function(h) { allKeys.push(dateKey(d,h)); }); });
+      const cache = {};
+      await Promise.all(allKeys.map(async function(key) {
+        try {
+          const snap = await getDoc(doc(db,'horarios',key));
+          if (snap.exists()) cache[key] = snap.data();
+        } catch(e) {}
+      }));
+
+      cal.innerHTML = '';
+      cal.appendChild(document.createElement('div'));
+
+      days.forEach(function(d) {
+        const head = document.createElement('div');
+        head.className = 'hor-day-head' + (isToday(d) ? ' hor-today' : '');
+        head.innerHTML = '<span class="hor-dow">' + DIAS[d.getDay()] + '</span><div class="hor-dom">' + d.getDate() + '</div>';
+        cal.appendChild(head);
+      });
+
+      HORAS.forEach(function(hora) {
+        // Si todos los dias de esta hora son pasados, omitir la fila completa
+        var todaPasada = days.every(function(d) { return isPast(d, hora); });
+        if (todaPasada) return;
+
+        const lbl = document.createElement('div');
+        lbl.className = 'hor-hour-lbl';
+        lbl.textContent = hora;
+        cal.appendChild(lbl);
+
+        days.forEach(function(d) {
+          const key  = dateKey(d, hora);
+          const data = cache[key];
+          const past = isPast(d, hora);
+          const slot = document.createElement('div');
+          slot.className = 'hor-slot' + (data && !past ? ' hor-avail' : '') + (past ? ' hor-past' : '');
+
+          if (data && !past) {
+            const modIcon = data.modalidad === 'Online' ? '💻' : data.modalidad === 'Ambas' ? '📍💻' : '📍';
+            slot.innerHTML = '<span class="hor-slot-icon">✅</span><span class="hor-slot-svc">Disponible</span><span class="hor-slot-mod">' + modIcon + '</span>';
+            slot.title = 'Disponible · ' + hora + ' · ' + data.modalidad;
+            slot.addEventListener('click', (function(dd, h, mod) {
+              return function() { abrirPopupSvc(dd, h, mod); };
+            }(d, hora, data.modalidad)));
+          } else {
+            slot.innerHTML = '<span class="hor-slot-icon">·</span>';
+          }
+          cal.appendChild(slot);
+        });
+      });
+    }
+
+    document.getElementById('horPrev').addEventListener('click', function() { weekOffset--; renderPublicCal(); });
+    document.getElementById('horNext').addEventListener('click', function() { weekOffset++; renderPublicCal(); });
+    document.getElementById('horToday').addEventListener('click', function() { weekOffset = 0; renderPublicCal(); });
+
+    renderPublicCal();
+  </script>
+
+
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        var swUrl = '/sw.js';
+        /* Si estamos en una subcarpeta, ajustar la ruta */
+        var path = window.location.pathname;
+        if (path !== '/' && !path.endsWith('/index.html')) {
+          swUrl = path.replace(/\/[^/]*$/, '/') + 'sw.js';
+        }
+        navigator.serviceWorker.register(swUrl)
+          .then(function(reg) { console.log('SW registrado:', reg.scope); })
+          .catch(function(err) { console.log('SW no disponible en local:', err.message); });
+      });
+    }
+  </script>
+</body>
+</html>
