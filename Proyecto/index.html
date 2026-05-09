@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Elemento Sinergia | William Velásquez</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <meta name="description" content="Clases de Rumba, Yoga, Pilates MAT, Masoterapia y Stretching con William Velásquez. Transforma tu cuerpo y tu mente." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +18,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Sinergia" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
 </head>
 <body>
 
@@ -664,8 +664,7 @@
           estado:     'pendiente',
           creadoEn:   serverTimestamp()
         });
-        await deleteDoc(doc(db, 'horarios', slotK));
-        renderPublicCal();
+        // El slot NO se elimina — William lo desactiva manualmente desde el admin
       } catch(e) { console.log('Error en reserva:', e); }
     });
 

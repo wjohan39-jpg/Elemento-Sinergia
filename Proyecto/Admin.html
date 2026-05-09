@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin · Elemento Sinergia</title>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -1652,6 +1652,13 @@
       if (filtroActual === 'atendidas')  items = items.filter(function(r){return r.estado==='atendida';});
       const pendientes = reservasCache.filter(function(r){return r.estado==='pendiente';}).length;
       document.getElementById('tabResBadge').textContent = pendientes;
+
+      // Detectar conflictos — mismo slotKey con estado pendiente
+      const slotCount = {};
+      reservasCache.filter(function(r){return r.estado==='pendiente';}).forEach(function(r){
+        if (r.slotKey) slotCount[r.slotKey] = (slotCount[r.slotKey]||0) + 1;
+      });
+
       if (!items.length) {
         lista.innerHTML = '<div class="reservas-vacio">No hay reservas ' + (filtroActual!=='todas'?filtroActual:'') + '.</div>';
         return;
@@ -1662,7 +1669,9 @@
         div.className = 'reserva-item' + (r.estado==='atendida'?' atendida':'');
         const emo = SVC_EMO_R[r.servicio]||'📅';
         const tiempo = r.creadoEn ? new Date(r.creadoEn.seconds*1000).toLocaleString('es-CO',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : 'Reciente';
+        const conflicto = r.slotKey && slotCount[r.slotKey] > 1 && r.estado === 'pendiente';
         div.innerHTML =
+          (conflicto ? '<div style="background:#fef3c7;border:1.5px solid #f59e0b;border-radius:8px;padding:.4rem .8rem;font-size:.75rem;font-weight:700;color:#92400e;margin-bottom:.6rem;width:100%;">⚠️ Conflicto: hay ' + slotCount[r.slotKey] + ' reservas para este mismo horario</div>' : '') +
           '<div class="reserva-info"><div class="reserva-svc">'+emo+' '+r.servicio+'</div>' +
           '<div class="reserva-detalle"><strong>'+r.fecha+'</strong> · '+r.hora+' · '+r.modalidad+'</div>' +
           (r.nombre ? '<div class="reserva-detalle">👤 '+r.nombre+(r.direccion?' · 📍 '+r.direccion:'')+'</div>' : '') +
