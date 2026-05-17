@@ -227,9 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
    9. CARRUSEL SERVICIOS — 5 cards, 3 visibles
 ═══════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function () {
-  var track   = document.getElementById('servicesTrack');
-  var btnPrev = document.getElementById('svcPrev');
-  var btnNext = document.getElementById('svcNext');
+  var track = document.getElementById('servicesTrack');
   if (!track) return;
 
   var cards = track.querySelectorAll('.svc-card');
@@ -252,12 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
     idx = Math.max(0, Math.min(n, maxIdx()));
     track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
     track.style.transform  = 'translateX(-' + (idx * calcPaso()) + 'px)';
-    btnPrev.disabled = (idx === 0);
-    btnNext.disabled = (idx >= maxIdx());
   }
-
-  btnPrev.addEventListener('click', function () { goTo(idx - 1); });
-  btnNext.addEventListener('click', function () { goTo(idx + 1); });
 
   var drag = false, sx = 0, dx = 0;
   track.addEventListener('mousedown',  function (e) { drag = true; sx = e.clientX; dx = 0; track.style.transition = 'none'; });
@@ -278,8 +271,6 @@ document.addEventListener('DOMContentLoaded', function () {
       if (idx > maxIdx()) idx = maxIdx();
       track.style.transition = 'none';
       track.style.transform  = 'translateX(-' + (idx * calcPaso()) + 'px)';
-      btnPrev.disabled = (idx === 0);
-      btnNext.disabled = (idx >= maxIdx());
     }, 150);
   });
 

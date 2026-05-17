@@ -389,10 +389,7 @@ nav.scrolled {
   85%     { transform: translateX(2px)  translateY(-2px) skewX(.2deg);  }
 }
 
-@keyframes slideRight {
-  from { opacity: 0; transform: translateX(-40px); }
-  to   { opacity: 1; transform: none; }
-}
+
 @keyframes fadeDown {
   from { opacity: 0; transform: translateY(-16px); }
   to   { opacity: 1; transform: none; }
@@ -508,11 +505,11 @@ nav.scrolled {
 }
 
 /* Imagen de fondo via pseudo-elemento — no compite con background-color */
-#servicesTrack .svc-card:nth-child(1)::before { background-image: url('/Multimedia/rumbaimg.png');      }
-#servicesTrack .svc-card:nth-child(2)::before { background-image: url('/Multimedia/yogaimg.png');       }
-#servicesTrack .svc-card:nth-child(3)::before { background-image: url('/Multimedia/pilatesimg.png');    }
-#servicesTrack .svc-card:nth-child(4)::before { background-image: url('/Multimedia/masoterapia.png');   }
-#servicesTrack .svc-card:nth-child(5)::before { background-image: url('/Multimedia/stretchingimg.png'); }
+#servicesTrack .svc-card:nth-child(1)::before { background-image: url('../Multimedia/rumbaimg.png');      }
+#servicesTrack .svc-card:nth-child(2)::before { background-image: url('../Multimedia/yogaimg.png');       }
+#servicesTrack .svc-card:nth-child(3)::before { background-image: url('../Multimedia/pilatesimg.png');    }
+#servicesTrack .svc-card:nth-child(4)::before { background-image: url('../Multimedia/masoterapia.png');   }
+#servicesTrack .svc-card:nth-child(5)::before { background-image: url('../Multimedia/stretchingimg.png'); }
 
 .svc-card::before {
   content: '';
@@ -579,9 +576,19 @@ nav.scrolled {
 
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
+  #servicesTrack .svc-card:nth-child(1),
+  #servicesTrack .svc-card:nth-child(2),
+  #servicesTrack .svc-card:nth-child(3),
+  #servicesTrack .svc-card:nth-child(4),
+  #servicesTrack .svc-card:nth-child(5) { grid-column: auto; width: 100%; }
 }
 @media (max-width: 600px) {
   .services-grid { grid-template-columns: 1fr; }
+  #servicesTrack .svc-card:nth-child(1),
+  #servicesTrack .svc-card:nth-child(2),
+  #servicesTrack .svc-card:nth-child(3),
+  #servicesTrack .svc-card:nth-child(4),
+  #servicesTrack .svc-card:nth-child(5) { grid-column: auto; width: 100%; }
 }
 
 .svc-num {
@@ -591,7 +598,7 @@ nav.scrolled {
   line-height: 1;
   margin-bottom: .6rem;
 }
-.svc-icon { font-size: 2rem; margin-bottom: 1rem; }
+
 
 .svc-card h3 {
   font-family: var(--font-h);
@@ -948,7 +955,6 @@ footer {
 @media (max-width: 1100px) {
   .services-grid { gap: 1rem; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
-  .horarios-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 900px) {
@@ -979,7 +985,7 @@ footer {
   .hero-stats { gap: 1rem; flex-wrap: wrap; }
 
   .services-grid { gap: .8rem; }
-  .horarios-grid { grid-template-columns: 1fr; }
+
   .footer-inner { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
@@ -1238,13 +1244,14 @@ html {
     background-color .35s ease,
     color .35s ease;
 }
-*, *::before, *::after {
+a, button, input, .svc-card, .testi-card, .nav-links a,
+.social-btn, .footer-col a, .dark-toggle, .hor-nav-btn,
+.hor-slot, .hor-today-btn {
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: .3s;
   transition-timing-function: ease;
 }
 .hero-title .line,
-.hero-badge,
 .hero-sub,
 .hero-actions,
 .hero-scroll,
