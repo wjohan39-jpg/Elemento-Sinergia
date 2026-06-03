@@ -26,7 +26,7 @@
   <div id="preloader">
     <div class="pre-inner">
       <div class="pre-logo">
-        <img src="../Multimedia/logosinergia.png" alt="Elemento Sinergia" class="pre-logo-img" />
+        <img src="Multimedia/logosinergia.png" alt="Elemento Sinergia" class="pre-logo-img" />
       </div>
       <div class="pre-bar"><div class="pre-bar-fill"></div></div>
       <p class="pre-txt">Cargando tu experiencia...</p>
@@ -35,7 +35,7 @@
 
   <nav id="navbar">
     <a href="#inicio" class="nav-logo">
-      <img src="../Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
+      <img src="Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#servicios">Servicios</a></li>
@@ -340,11 +340,73 @@
     </div>
   </section>
 
+  <section id="contacto" class="section-contacto">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Escríbeme</p>
+        <h2 class="section-title">¿Tienes <span class="accent">alguna pregunta?</span></h2>
+        <p class="section-sub">Cuéntame qué necesitas y te respondo a la brevedad.</p>
+      </div>
+      <div class="contacto-wrap">
+        <form id="formContacto" class="contacto-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cNombre">Nombre completo</label>
+              <input class="form-input" type="text" id="cNombre" placeholder="Ej: Ana García" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cEmail">Correo electrónico</label>
+              <input class="form-input" type="email" id="cEmail" placeholder="tu@email.com" autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cServicio">¿Qué servicio te interesa?</label>
+            <select class="form-input" id="cServicio">
+              <option value="">Selecciona un servicio...</option>
+              <option>Rumba &amp; Baile</option>
+              <option>Yoga</option>
+              <option>Pilates MAT</option>
+              <option>Masoterapia</option>
+              <option>Stretching</option>
+              <option>Información general</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cMensaje">Tu mensaje</label>
+            <textarea class="form-input form-textarea" id="cMensaje" placeholder="Cuéntame en qué puedo ayudarte..." rows="4"></textarea>
+          </div>
+          <p id="contactoError" class="form-error hidden">Por favor completa nombre, correo y mensaje.</p>
+          <button type="submit" class="btn-primary contacto-submit">
+            <span>Enviar mensaje</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <div class="contacto-info">
+          <h3 class="contacto-info-title">Información directa</h3>
+          <ul class="contacto-info-list">
+            <li><span class="ci-icon" aria-hidden="true">📧</span><span>will@elementosinergia.com</span></li>
+            <li><span class="ci-icon" aria-hidden="true">📱</span><a href="https://wa.me/573103660562" target="_blank" rel="noopener">+57 310 366 0562</a></li>
+            <li><span class="ci-icon" aria-hidden="true">📍</span><span>Medellín, Colombia</span></li>
+            <li><span class="ci-icon" aria-hidden="true">💻</span><span>Clases online vía Zoom</span></li>
+          </ul>
+          <a href="https://wa.me/573103660562?text=Hola%20William!%20Quiero%20informaci%C3%B3n%20sobre%20las%20clases%20de%20Elemento%20Sinergia."
+             class="btn-wa-contacto" target="_blank" rel="noopener" aria-label="Chatear por WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.118 1.523 5.855L.057 23.428a.75.75 0 0 0 .914.914l5.663-1.453A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.497-5.207-1.367l-.371-.214-3.862.991.999-3.77-.228-.381A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            Chatear por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div class="container footer-inner">
       <div class="footer-brand">
         <a href="#inicio" class="nav-logo footer-logo">
-          <img src="../Multimedia/logosinergia.png" alt="Elemento Sinergia" class="footer-logo-img" />
+          <img src="Multimedia/logosinergia.png" alt="Elemento Sinergia" class="footer-logo-img" />
         </a>
         <p class="footer-desc">
           Movimiento, bienestar y ritmo con <strong>William Velásquez</strong>.
@@ -388,7 +450,7 @@
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
-      <div class="footer-col" id="contacto">
+      <div class="footer-col">
         <h4>Contacto</h4>
         <ul class="footer-contact">
           <li>📧 will@elementosinergia.com</li>
@@ -421,317 +483,37 @@
 
   <script src="Will.js"></script>
 
-  <script>
-    setTimeout(function () {
-      function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
-      function animar(el) {
-        var destino  = parseFloat(el.getAttribute('data-count'));
-        var duracion = parseInt(el.getAttribute('data-duration') || '2000');
-        var prefijo  = el.getAttribute('data-prefix') || '';
-        var sufijo   = el.getAttribute('data-suffix') || '';
-        var inicio   = performance.now();
-        function tick(now) {
-          var t = Math.min((now - inicio) / duracion, 1);
-          el.textContent = prefijo + Math.floor(destino * easeOut(t)) + sufijo;
-          if (t < 1) requestAnimationFrame(tick);
-          else el.textContent = prefijo + destino + sufijo;
-        }
-        requestAnimationFrame(tick);
-      }
-      function enPantalla(el) { var r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; }
-      var pendientes = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
-      function revisar() {
-        pendientes = pendientes.filter(function (el) {
-          if (el.getAttribute('data-hecho')) return false;
-          if (enPantalla(el)) { el.setAttribute('data-hecho', '1'); animar(el); return false; }
-          return true;
-        });
-        if (!pendientes.length) window.removeEventListener('scroll', revisar);
-      }
-      revisar();
-      window.addEventListener('scroll', revisar, { passive: true });
-    }, 1200);
-  </script>
+  <!-- Popup selección servicio -->
+  <div id="svcPopupOverlay" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popupTitulo">
+    <div class="popup-dialog">
+      <p id="popupTitulo" class="popup-title">Reserva tu clase</p>
+      <p id="svcPopupInfo" class="popup-info"></p>
 
-  <!-- Popup seleccion servicio -->
-  <div id="svcPopupOverlay" style="display:none;position:fixed;inset:0;z-index:9990;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem;">
-    <div style="background:#fff;border-radius:20px;padding:2rem;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.3);">
-      <p style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#0B1F42;margin-bottom:.2rem;letter-spacing:.03em;">Reserva tu clase</p>
-      <p id="svcPopupInfo" style="font-size:.82rem;color:#6B7280;font-weight:600;margin-bottom:1.2rem;"></p>
-
-      <!-- Paso 1: elegir clase -->
       <div id="popupPaso1">
-        <p style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0B1F42;margin-bottom:.6rem;">Elige la clase</p>
-        <div id="svcBtns" style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem;"></div>
+        <p class="popup-section-lbl">Elige la clase</p>
+        <div id="svcBtns" class="svc-btns-grid"></div>
       </div>
 
-      <!-- Paso 2: datos personales -->
-      <div id="popupPaso2" style="display:none;">
-        <p style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#0B1F42;margin-bottom:.8rem;">Tus datos</p>
-        <div style="margin-bottom:.8rem;">
-          <label style="display:block;font-size:.72rem;font-weight:700;color:#0B1F42;margin-bottom:.35rem;letter-spacing:.06em;text-transform:uppercase;">Nombre completo</label>
-          <input id="popupNombre" type="text" placeholder="Ej: Juan García" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;font-family:Outfit,sans-serif;font-size:.9rem;color:#0B1F42;background:#F3F4F6;outline:none;" />
+      <div id="popupPaso2" class="hidden">
+        <p class="popup-section-lbl">Tus datos</p>
+        <div class="popup-field">
+          <label class="popup-field-label" for="popupNombre">Nombre completo</label>
+          <input class="popup-field-input" type="text" id="popupNombre" placeholder="Ej: Juan García" autocomplete="name" />
         </div>
-        <div style="margin-bottom:1.2rem;">
-          <label style="display:block;font-size:.72rem;font-weight:700;color:#0B1F42;margin-bottom:.35rem;letter-spacing:.06em;text-transform:uppercase;">Dirección del domicilio</label>
-          <input id="popupDireccion" type="text" placeholder="Ej: Calle 50 #32-15, Laureles" style="width:100%;padding:.75rem 1rem;border:1.5px solid rgba(0,0,0,.1);border-radius:12px;font-family:Outfit,sans-serif;font-size:.9rem;color:#0B1F42;background:#F3F4F6;outline:none;" />
+        <div class="popup-field">
+          <label class="popup-field-label" for="popupDireccion">Dirección del domicilio</label>
+          <input class="popup-field-input" type="text" id="popupDireccion" placeholder="Ej: Calle 50 #32-15, Laureles" autocomplete="street-address" />
         </div>
-        <p id="popupError" style="display:none;color:#dc2626;font-size:.78rem;font-weight:600;margin-bottom:.8rem;">Por favor completa todos los campos.</p>
-        <button id="popupConfirmar" style="width:100%;padding:.85rem;background:#F26419;color:#fff;border:none;border-radius:999px;font-family:Outfit,sans-serif;font-weight:700;font-size:.92rem;cursor:pointer;margin-bottom:.6rem;">Confirmar reserva →</button>
-        <button onclick="volverPaso1Svc()" style="width:100%;padding:.65rem;background:#F3F4F6;border:none;border-radius:999px;font-family:Outfit,sans-serif;font-weight:700;font-size:.82rem;color:#6B7280;cursor:pointer;">← Volver</button>
+        <p id="popupError" class="popup-error hidden">Por favor completa todos los campos.</p>
+        <button id="popupConfirmar" class="popup-btn-primary" type="button">Confirmar reserva →</button>
+        <button id="popupVolver" class="popup-btn-secondary" type="button">← Volver</button>
       </div>
 
-      <button onclick="cerrarPopupSvc()" style="width:100%;padding:.7rem;background:#F3F4F6;border:none;border-radius:999px;font-family:'Outfit',sans-serif;font-weight:700;font-size:.85rem;color:#6B7280;cursor:pointer;margin-top:.5rem;">Cancelar</button>
+      <button id="popupCancelar" class="popup-btn-cancel" type="button">Cancelar</button>
     </div>
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey:            "AIzaSyC_k8SIIMG9Qvn69AOcQ2rF3cUWfZySPFk",
-      authDomain:        "elemento-sinergia.firebaseapp.com",
-      projectId:         "elemento-sinergia",
-      storageBucket:     "elemento-sinergia.firebasestorage.app",
-      messagingSenderId: "782989236753",
-      appId:             "1:782989236753:web:e809a172257acc0139afb0"
-    };
-
-    const app = initializeApp(firebaseConfig, 'public');
-    const db  = getFirestore(app);
-
-    const HORAS   = ['06:00','07:00','08:00','09:00','10:00','11:00',
-                     '12:00','13:00','14:00','15:00','16:00','17:00',
-                     '18:00','19:00','20:00'];
-    const DIAS    = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
-    const DIAS_L  = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-    const MESES   = ['enero','febrero','marzo','abril','mayo','junio',
-                     'julio','agosto','septiembre','octubre','noviembre','diciembre'];
-    const MESES_S = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
-
-    const SERVICIOS = [
-      { id:'Rumba',       label:'Rumba & Baile',  emo:'🕺' },
-      { id:'Yoga',        label:'Yoga',            emo:'🧘' },
-      { id:'Pilates',     label:'Pilates MAT',     emo:'💪' },
-      { id:'Masoterapia', label:'Masoterapia',     emo:'🤲' },
-      { id:'Stretching',  label:'Stretching',      emo:'🤸' }
-    ];
-
-    let weekOffset = 0;
-
-    function getWeekDates(offset) {
-      const today  = new Date();
-      const day    = today.getDay();
-      const monday = new Date(today);
-      monday.setDate(today.getDate() - day + 1 + offset * 7);
-      monday.setHours(0,0,0,0);
-      const days = [];
-      for (let i = 0; i < 7; i++) {
-        const d = new Date(monday);
-        d.setDate(monday.getDate() + i);
-        days.push(d);
-      }
-      return days;
-    }
-
-    function dateKey(d, hora) {
-      const y   = d.getFullYear();
-      const m   = String(d.getMonth()+1).padStart(2,'0');
-      const day = String(d.getDate()).padStart(2,'0');
-      return y + '-' + m + '-' + day + '_' + hora;
-    }
-
-    function isPast(d, hora) {
-      const now = new Date();
-      const slotDate = new Date(d);
-      slotDate.setHours(parseInt(hora.split(':')[0]), 0, 0, 0);
-      return slotDate < now;
-    }
-
-    function isToday(d) {
-      const t = new Date();
-      return d.getDate()===t.getDate() && d.getMonth()===t.getMonth() && d.getFullYear()===t.getFullYear();
-    }
-
-    function buildWaLink(d, hora, servicio, modalidad) {
-      const dow   = DIAS_L[d.getDay()];
-      const fecha = dow + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()];
-      const msg   = 'Hola William! Quiero reservar la clase de ' + servicio + ' el ' + fecha + ' a las ' + hora + '. Modalidad: ' + modalidad + '.';
-      return 'https://wa.me/573103660562?text=' + encodeURIComponent(msg);
-    }
-
-    // Estado del popup
-    var popupEstado = { d: null, hora: null, modalidad: null, servicio: null, fecha: null };
-
-    window.cerrarPopupSvc = function() {
-      document.getElementById('svcPopupOverlay').style.display = 'none';
-      popupEstado = { d: null, hora: null, modalidad: null, servicio: null, fecha: null };
-    };
-
-    window.volverPaso1Svc = function() {
-      document.getElementById('popupPaso1').style.display = 'block';
-      document.getElementById('popupPaso2').style.display = 'none';
-      document.getElementById('popupError').style.display = 'none';
-    };
-
-    function abrirPopupSvc(d, hora, modalidad) {
-      const dow    = DIAS_L[d.getDay()];
-      const fecha  = dow + ' ' + d.getDate() + ' de ' + MESES[d.getMonth()];
-      const modTxt = modalidad === 'Online' ? '💻 Online' : modalidad === 'Ambas' ? '📍💻 Presencial y Online' : '📍 Presencial';
-      document.getElementById('svcPopupInfo').textContent = hora + ' · ' + fecha + ' · ' + modTxt;
-
-      // Mostrar paso 1
-      document.getElementById('popupPaso1').style.display = 'block';
-      document.getElementById('popupPaso2').style.display = 'none';
-      document.getElementById('popupError').style.display = 'none';
-      document.getElementById('popupNombre').value = '';
-      document.getElementById('popupDireccion').value = '';
-
-      // Construir botones de servicios
-      const btns = document.getElementById('svcBtns');
-      btns.innerHTML = '';
-      SERVICIOS.forEach(function(svc) {
-        const btn = document.createElement('button');
-        btn.style.cssText = 'padding:.8rem .5rem;background:#FAF7F2;border:1.5px solid rgba(0,0,0,.08);border-radius:14px;font-family:Outfit,sans-serif;font-weight:700;font-size:.82rem;color:#0B1F42;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.3rem;transition:all .2s;';
-        btn.innerHTML = '<span style="font-size:1.4rem;">' + svc.emo + '</span><span>' + svc.label + '</span>';
-        btn.addEventListener('mouseenter', function() { btn.style.background='#F26419'; btn.style.color='#fff'; btn.style.borderColor='#F26419'; });
-        btn.addEventListener('mouseleave', function() { btn.style.background='#FAF7F2'; btn.style.color='#0B1F42'; btn.style.borderColor='rgba(0,0,0,.08)'; });
-        btn.addEventListener('click', function() {
-          var mod = modalidad === 'Ambas' ? 'Presencial y Online' : modalidad;
-          popupEstado.d = d; popupEstado.hora = hora;
-          popupEstado.modalidad = mod; popupEstado.servicio = svc.id;
-          popupEstado.fecha = fecha;
-          // Ir al paso 2
-          document.getElementById('popupPaso1').style.display = 'none';
-          document.getElementById('popupPaso2').style.display = 'block';
-        });
-        btns.appendChild(btn);
-      });
-
-      document.getElementById('svcPopupOverlay').style.display = 'flex';
-    }
-
-    // Confirmar reserva con nombre y dirección
-    document.getElementById('popupConfirmar').addEventListener('click', async function() {
-      var nombre    = document.getElementById('popupNombre').value.trim();
-      var direccion = document.getElementById('popupDireccion').value.trim();
-      var errEl     = document.getElementById('popupError');
-
-      if (!nombre || !direccion) {
-        errEl.style.display = 'block';
-        return;
-      }
-      errEl.style.display = 'none';
-
-      var d         = popupEstado.d;
-      var hora      = popupEstado.hora;
-      var servicio  = popupEstado.servicio;
-      var mod       = popupEstado.modalidad;
-      var fecha     = popupEstado.fecha;
-      var slotK     = dateKey(d, hora);
-
-      // Construir mensaje WhatsApp con nombre y dirección
-      var msg = 'Hola William! Quiero reservar la clase de ' + servicio +
-                ' el ' + fecha + ' a las ' + hora + '.' +
-                '%0ANombre: ' + encodeURIComponent(nombre) +
-                '%0ADirección: ' + encodeURIComponent(direccion) +
-                '%0AModalidad: ' + mod;
-
-      window.open('https://wa.me/573103660562?text=' + msg, '_blank', 'noopener');
-      cerrarPopupSvc();
-
-      try {
-        await addDoc(collection(db, 'reservas'), {
-          servicio:   servicio,
-          hora:       hora,
-          fecha:      fecha,
-          fechaISO:   d.toISOString().split('T')[0],
-          modalidad:  mod,
-          nombre:     nombre,
-          direccion:  direccion,
-          slotKey:    slotK,
-          estado:     'pendiente',
-          creadoEn:   serverTimestamp()
-        });
-        // El slot NO se elimina — William lo desactiva manualmente desde el admin
-      } catch(e) { console.log('Error en reserva:', e); }
-    });
-
-    document.getElementById('svcPopupOverlay').addEventListener('click', function(e) {
-      if (e.target === document.getElementById('svcPopupOverlay')) cerrarPopupSvc();
-    });
-
-    async function renderPublicCal() {
-      const cal = document.getElementById('horCal');
-      if (!cal) return;
-      cal.innerHTML = '<div class="hor-loading"><div class="hor-spinner"></div><br>Cargando horarios...</div>';
-
-      const days = getWeekDates(weekOffset);
-      const d0 = days[0], d6 = days[6];
-      document.getElementById('horWeekLabel').textContent =
-        d0.getDate() + ' ' + MESES_S[d0.getMonth()] + ' - ' + d6.getDate() + ' ' + MESES_S[d6.getMonth()] + ' ' + d6.getFullYear();
-
-      const allKeys = [];
-      days.forEach(function(d) { HORAS.forEach(function(h) { allKeys.push(dateKey(d,h)); }); });
-      const cache = {};
-      await Promise.all(allKeys.map(async function(key) {
-        try {
-          const snap = await getDoc(doc(db,'horarios',key));
-          if (snap.exists()) cache[key] = snap.data();
-        } catch(e) {}
-      }));
-
-      cal.innerHTML = '';
-      cal.appendChild(document.createElement('div'));
-
-      days.forEach(function(d) {
-        const head = document.createElement('div');
-        head.className = 'hor-day-head' + (isToday(d) ? ' hor-today' : '');
-        head.innerHTML = '<span class="hor-dow">' + DIAS[d.getDay()] + '</span><div class="hor-dom">' + d.getDate() + '</div>';
-        cal.appendChild(head);
-      });
-
-      HORAS.forEach(function(hora) {
-        // Si todos los dias de esta hora son pasados, omitir la fila completa
-        var todaPasada = days.every(function(d) { return isPast(d, hora); });
-        if (todaPasada) return;
-
-        const lbl = document.createElement('div');
-        lbl.className = 'hor-hour-lbl';
-        lbl.textContent = hora;
-        cal.appendChild(lbl);
-
-        days.forEach(function(d) {
-          const key  = dateKey(d, hora);
-          const data = cache[key];
-          const past = isPast(d, hora);
-          const slot = document.createElement('div');
-          slot.className = 'hor-slot' + (data && !past ? ' hor-avail' : '') + (past ? ' hor-past' : '');
-
-          if (data && !past) {
-            const modIcon = data.modalidad === 'Online' ? '💻' : data.modalidad === 'Ambas' ? '📍💻' : '📍';
-            slot.innerHTML = '<span class="hor-slot-icon">✅</span><span class="hor-slot-svc">Disponible</span><span class="hor-slot-mod">' + modIcon + '</span>';
-            slot.title = 'Disponible · ' + hora + ' · ' + data.modalidad;
-            slot.addEventListener('click', (function(dd, h, mod) {
-              return function() { abrirPopupSvc(dd, h, mod); };
-            }(d, hora, data.modalidad)));
-          } else {
-            slot.innerHTML = '<span class="hor-slot-icon">·</span>';
-          }
-          cal.appendChild(slot);
-        });
-      });
-    }
-
-    document.getElementById('horPrev').addEventListener('click', function() { weekOffset--; renderPublicCal(); });
-    document.getElementById('horNext').addEventListener('click', function() { weekOffset++; renderPublicCal(); });
-    document.getElementById('horToday').addEventListener('click', function() { weekOffset = 0; renderPublicCal(); });
-
-    renderPublicCal();
-  </script>
-
-
+  <script type="module" src="firebase-public.js"></script>
 
   <script>
     if ('serviceWorker' in navigator) {
