@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
     btnPrev.disabled = (idx === 0);
     btnNext.disabled = (idx >= max);
     if (elCur) elCur.textContent = idx + 1;
-    if (elTot) elTot.textContent = max + 1;
+    if (elTot) elTot.textContent = total;
     dotsWrap.querySelectorAll('.gal-dot').forEach(function (d, i) {
       d.classList.toggle('active', i === idx);
     });
@@ -217,14 +217,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   window.addEventListener('load', function () {
-    setTimeout(ocultarPreloader, 2000);
+    setTimeout(ocultarPreloader, 600);
   });
 
-  setTimeout(ocultarPreloader, 4000);
+  setTimeout(ocultarPreloader, 3500);
 }());
 
 /* ═══════════════════════════════════════════════════════════════
-   9. CARRUSEL SERVICIOS — 5 cards, 3 visibles
+   9. CARRUSEL SERVICIOS — solo activo en mobile (≤600px)
+      En desktop el grid CSS maneja el layout directamente.
 ═══════════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', function () {
   var track = document.getElementById('servicesTrack');
@@ -233,46 +234,91 @@ document.addEventListener('DOMContentLoaded', function () {
   var cards = track.querySelectorAll('.svc-card');
   var total = cards.length;
   var idx   = 0;
-  var PER_VIEW = 3;
+
+  function isMobile() { return window.innerWidth <= 600; }
 
   function calcPaso() {
     if (total < 2) return cards[0].offsetWidth;
     return cards[1].offsetLeft - cards[0].offsetLeft;
   }
 
-  function maxIdx() {
-    var w = window.innerWidth;
-    var pv = w <= 600 ? 1 : w <= 900 ? 2 : PER_VIEW;
-    return Math.max(0, total - pv);
-  }
-
   function goTo(n) {
-    idx = Math.max(0, Math.min(n, maxIdx()));
+    if (!isMobile()) { track.style.transform = ''; return; }
+    idx = Math.max(0, Math.min(n, total - 1));
     track.style.transition = 'transform .45s cubic-bezier(.4,0,.2,1)';
     track.style.transform  = 'translateX(-' + (idx * calcPaso()) + 'px)';
   }
 
   var drag = false, sx = 0, dx = 0;
-  track.addEventListener('mousedown',  function (e) { drag = true; sx = e.clientX; dx = 0; track.style.transition = 'none'; });
-  window.addEventListener('mousemove', function (e) { if (!drag) return; dx = e.clientX - sx; track.style.transform = 'translateX(-' + (idx * calcPaso() - dx) + 'px)'; });
-  window.addEventListener('mouseup',   function () {
+  track.addEventListener('mousedown', function (e) {
+    if (!isMobile()) return;
+    drag = true; sx = e.clientX; dx = 0; track.style.transition = 'none';
+  });
+  window.addEventListener('mousemove', function (e) {
+    if (!drag || !isMobile()) return;
+    dx = e.clientX - sx;
+    track.style.transform = 'translateX(-' + (idx * calcPaso() - dx) + 'px)';
+  });
+  window.addEventListener('mouseup', function () {
     if (!drag) return; drag = false;
     if (dx < -60) goTo(idx + 1); else if (dx > 60) goTo(idx - 1); else goTo(idx);
   });
-  track.addEventListener('touchstart', function (e) { drag = true; sx = e.touches[0].clientX; dx = 0; track.style.transition = 'none'; }, { passive: true });
-  track.addEventListener('touchmove',  function (e) { if (!drag) return; dx = e.touches[0].clientX - sx; track.style.transform = 'translateX(-' + (idx * calcPaso() - dx) + 'px)'; }, { passive: true });
-  track.addEventListener('touchend',   function () {
+  track.addEventListener('touchstart', function (e) {
+    if (!isMobile()) return;
+    drag = true; sx = e.touches[0].clientX; dx = 0; track.style.transition = 'none';
+  }, { passive: true });
+  track.addEventListener('touchmove', function (e) {
+    if (!drag || !isMobile()) return;
+    dx = e.touches[0].clientX - sx;
+    track.style.transform = 'translateX(-' + (idx * calcPaso() - dx) + 'px)';
+  }, { passive: true });
+  track.addEventListener('touchend', function () {
     if (!drag) return; drag = false;
     if (dx < -60) goTo(idx + 1); else if (dx > 60) goTo(idx - 1); else goTo(idx);
   });
 
   window.addEventListener('resize', function () {
     setTimeout(function () {
-      if (idx > maxIdx()) idx = maxIdx();
+      if (!isMobile()) { track.style.transform = ''; track.style.transition = ''; idx = 0; return; }
       track.style.transition = 'none';
       track.style.transform  = 'translateX(-' + (idx * calcPaso()) + 'px)';
     }, 150);
   });
 
   setTimeout(function () { goTo(0); }, 50);
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   10. CONTADORES ANIMADOS
+═══════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+    function animar(el) {
+      var destino  = parseFloat(el.getAttribute('data-count'));
+      var duracion = parseInt(el.getAttribute('data-duration') || '2000');
+      var prefijo  = el.getAttribute('data-prefix') || '';
+      var sufijo   = el.getAttribute('data-suffix') || '';
+      var inicio   = performance.now();
+      function tick(now) {
+        var t = Math.min((now - inicio) / duracion, 1);
+        el.textContent = prefijo + Math.floor(destino * easeOut(t)) + sufijo;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = prefijo + destino + sufijo;
+      }
+      requestAnimationFrame(tick);
+    }
+    function enPantalla(el) { var r = el.getBoundingClientRect(); return r.top < window.innerHeight && r.bottom > 0; }
+    var pendientes = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+    function revisar() {
+      pendientes = pendientes.filter(function (el) {
+        if (el.getAttribute('data-hecho')) return false;
+        if (enPantalla(el)) { el.setAttribute('data-hecho', '1'); animar(el); return false; }
+        return true;
+      });
+      if (!pendientes.length) window.removeEventListener('scroll', revisar);
+    }
+    revisar();
+    window.addEventListener('scroll', revisar, { passive: true });
+  }, 1200);
 });
