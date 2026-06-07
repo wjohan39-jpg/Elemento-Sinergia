@@ -8,7 +8,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" /></noscript>
   <link rel="stylesheet" href="Willstyle.css" />
   <style>
     /* ── BLOG HERO ── */
@@ -23,7 +24,7 @@
     .blog-hero-bg {
       position: absolute;
       inset: 0;
-      background: url('/Multimedia/blogrumba.jpg') center/cover no-repeat;
+      background: url('/Multimedia/blogrumba.webp') center/cover no-repeat;
     }
     .blog-hero-overlay {
       position: absolute;
@@ -227,7 +228,7 @@
   <!-- NAVBAR -->
   <nav id="navbar">
     <a href="index.html" class="nav-logo">
-      <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
+      <img src="/Multimedia/logosinergia.webp" alt="Elemento Sinergia" class="nav-logo-img" width="400" height="471" />
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#servicios">Servicios</a></li>
@@ -274,7 +275,7 @@
           "En 45 minutos de Rumba puedes quemar entre 400 y 600 calorías sin sentir que estás haciendo ejercicio — porque simplemente estás bailando."
         </div>
 
-        <img src="/Multimedia/blogrumba.jpg" alt="Clase de Rumba" class="blog-img" />
+        <img src="/Multimedia/blogrumba.webp" alt="Clase de Rumba" class="blog-img" loading="lazy" width="900" height="506" />
 
         <h2>Beneficios físicos</h2>
         <ul>

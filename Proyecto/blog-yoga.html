@@ -8,11 +8,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" /></noscript>
   <link rel="stylesheet" href="Willstyle.css" />
   <style>
     .blog-hero { margin-top: var(--nav-h); min-height: 55vh; position: relative; display: flex; align-items: flex-end; overflow: hidden; }
-    .blog-hero-bg { position: absolute; inset: 0; background: url('/Multimedia/blogyoga.jpg') center/cover no-repeat; }
+    .blog-hero-bg { position: absolute; inset: 0; background: url('/Multimedia/blogyoga.webp') center/cover no-repeat; }
     .blog-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,31,66,.92) 0%, rgba(11,31,66,.5) 50%, rgba(0,0,0,.2) 100%); }
     .blog-hero-content { position: relative; z-index: 2; padding: 4rem 5% 3.5rem; width: 100%; max-width: 1200px; margin: 0 auto; }
     .blog-back { display: inline-flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.7); text-decoration: none; font-size: .85rem; font-weight: 600; letter-spacing: .06em; margin-bottom: 1.5rem; transition: color .25s; }
@@ -49,7 +50,7 @@
 
   <nav id="navbar">
     <a href="index.html" class="nav-logo">
-      <img src="/Multimedia/logosinergia.png" alt="Elemento Sinergia" class="nav-logo-img" />
+      <img src="/Multimedia/logosinergia.webp" alt="Elemento Sinergia" class="nav-logo-img" width="400" height="471" />
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="index.html#servicios">Servicios</a></li>
@@ -88,7 +89,7 @@
           "El yoga no se trata de tocar los pies con las manos. Se trata de lo que aprendes en el camino hacia abajo."
         </div>
 
-        <img src="/Multimedia/blogyoga.jpg" alt="Clase de Yoga" class="blog-img" />
+        <img src="/Multimedia/blogyoga.webp" alt="Clase de Yoga" class="blog-img" loading="lazy" width="900" height="506" />
 
         <h2>Beneficios físicos</h2>
         <ul>
